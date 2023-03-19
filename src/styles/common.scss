@@ -1,0 +1,16 @@
+@import "./func.scss";
+
+$wide-screen: "(min-width: 1000px)";
+
+@mixin flexSort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin vw($size) {
+  font-size: get-vw($size);
+  @media #{$wide-screen} {
+    font-size: $size;
+  }
+}
