@@ -1,0 +1,17 @@
+@import "./styles/color.scss";
+@import "./styles/common.scss";
+@import "./styles/func.scss";
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: $backgroundColor;
+  @include flexSort;
+
+  .test {
+    width: get-vw(300px);
+    height: get-vw(400px);
+    @include vw(13px);
+    box-shadow: $boxShadow;
+  }
+}
