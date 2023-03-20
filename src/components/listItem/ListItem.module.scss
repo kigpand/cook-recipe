@@ -1,0 +1,8 @@
+@import "../../styles/color.scss";
+@import "../../styles/func.scss";
+
+.listItem {
+  font-size: 13px;
+  box-shadow: $boxShadow;
+  background-color: $listBackgroundColor;
+}

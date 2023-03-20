@@ -1,15 +1,10 @@
 import styles from "./App.module.scss";
+import Lists from "./components/lists/Lists";
 
 function App() {
   return (
     <div className={styles.App}>
-      <div className={styles.test}>test</div>
-      <div className={styles.test}>test</div>
-      <div className={styles.test}>test</div>
-      <div className={styles.test}>test</div>
-      <div className={styles.test}>test</div>
-      <div className={styles.test}>test</div>
-      <div className={styles.test}>test</div>
+      <Lists />
     </div>
   );
 }
