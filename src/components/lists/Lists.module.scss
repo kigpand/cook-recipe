@@ -1,9 +1,10 @@
 @import "../../styles/color.scss";
 
 .lists {
-  width: 100%;
+  width: 60%;
   height: 80%;
   padding: 5rem;
+  padding-top: 3rem;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(5, 20%);
@@ -16,7 +17,7 @@
     grid-row-start: 1;
     grid-row-end: 4;
     box-shadow: $boxShadow;
-    background-color: black;
+    background-color: rgb(76, 255, 70);
     color: white;
   }
 }

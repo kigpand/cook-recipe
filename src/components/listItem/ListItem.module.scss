@@ -5,4 +5,10 @@
   font-size: 13px;
   box-shadow: $boxShadow;
   background-color: $listBackgroundColor;
+  transition: 0.5s;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
 }
