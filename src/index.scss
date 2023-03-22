@@ -8,6 +8,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $backgroundColor;
+
+  @keyframes closeMotion {
+    0% {
+      right: 0px;
+    }
+
+    100% {
+      right: -400px;
+    }
+  }
 }
 
 code {

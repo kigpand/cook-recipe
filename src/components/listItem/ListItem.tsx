@@ -2,10 +2,15 @@ import styles from "./ListItem.module.scss";
 
 interface IListItem {
   item: number;
+  onView: () => void;
 }
 
-const ListItem = ({ item }: IListItem) => {
-  return <div className={styles.listItem}>{item}</div>;
+const ListItem = ({ item, onView }: IListItem) => {
+  return (
+    <div className={styles.listItem} onClick={onView}>
+      {item}
+    </div>
+  );
 };
 
 export default ListItem;

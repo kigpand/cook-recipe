@@ -1,0 +1,22 @@
+@import "../../styles/color.scss";
+
+.listView {
+  position: fixed;
+  width: 400px;
+  height: 100%;
+  background-color: white;
+  right: 0;
+  top: 0;
+  box-shadow: $boxBlackShadow;
+  animation: motion 0.2s forwards;
+
+  @keyframes motion {
+    0% {
+      right: -400px;
+    }
+
+    100% {
+      right: 0px;
+    }
+  }
+}
