@@ -2,22 +2,24 @@ import { useEffect, useState } from "react";
 import ListItem from "../listItem/ListItem";
 import ListView from "../listView/ListView";
 import styles from "./Lists.module.scss";
+import recipeJSON from "../../data/recipe.json";
+import { IRecipe } from "../../interface/IRecipe";
+import useRecipe from "../../store/recipe";
 
 const Lists = () => {
-  const [view, setView] = useState<boolean>(false);
-  const dummy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const { currentRecipe, setCurrentRecipe } = useRecipe();
 
-  function onView() {
-    setView(true);
+  function onView(recipe: IRecipe) {
+    setCurrentRecipe(recipe);
   }
 
   function unView() {
-    if (view) {
+    if (currentRecipe) {
       const listView = document.getElementById("listView");
       if (listView) {
         listView.style.animation = "closeMotion 0.2s forwards";
         listView.addEventListener("animationend", () => {
-          setView(false);
+          setCurrentRecipe(null);
         });
       }
     }
@@ -26,10 +28,10 @@ const Lists = () => {
   return (
     <div className={styles.lists} onClick={unView}>
       <div className={styles.main}>여러분의 레시피를 등록해보세요!</div>
-      {dummy.map((item: number) => {
-        return <ListItem key={item} item={item} onView={onView} />;
+      {recipeJSON.map((item: IRecipe) => {
+        return <ListItem key={item.id} item={item} onView={onView} />;
       })}
-      {view && <ListView />}
+      {currentRecipe && <ListView />}
     </div>
   );
 };

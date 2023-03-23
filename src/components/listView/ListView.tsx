@@ -1,9 +1,11 @@
+import useRecipe from "../../store/recipe";
 import styles from "./ListView.module.scss";
 
 const ListView = () => {
+  const { currentRecipe } = useRecipe();
   return (
     <div className={styles.listView} id="listView">
-      listView
+      {currentRecipe?.name}
     </div>
   );
 };
