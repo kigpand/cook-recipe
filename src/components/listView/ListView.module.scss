@@ -2,13 +2,72 @@
 
 .listView {
   position: fixed;
-  width: 400px;
   height: 100%;
   background-color: white;
   right: 0;
   top: 0;
   box-shadow: $boxBlackShadow;
   animation: motion 0.2s forwards;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  padding-bottom: 40px;
+  overflow-y: auto;
+
+  .img {
+    width: 400px;
+    height: 300px;
+  }
+
+  .title {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .materials {
+    margin-top: 30px;
+    display: flex;
+
+    .materialTitle {
+      margin-right: 20px;
+      font-weight: 700;
+    }
+
+    .items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      .item {
+        margin-right: 20px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .recipe {
+    margin-top: 20px;
+    width: 400px;
+    padding-bottom: 20px;
+
+    .recipeTitle {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .recipeList {
+      display: flex;
+      flex-direction: column;
+
+      .list {
+        b {
+          margin-right: 5px;
+        }
+        margin-bottom: 10px;
+      }
+    }
+  }
 
   @keyframes motion {
     0% {
