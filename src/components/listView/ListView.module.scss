@@ -13,6 +13,7 @@
   padding: 15px;
   padding-bottom: 40px;
   overflow-y: auto;
+  font-family: "TheJamsil5Bold";
 
   .img {
     width: 400px;
@@ -49,7 +50,6 @@
   .recipe {
     margin-top: 20px;
     width: 400px;
-    padding-bottom: 20px;
 
     .recipeTitle {
       font-weight: 700;
@@ -61,11 +61,25 @@
       flex-direction: column;
 
       .list {
+        line-height: 25px;
+        color: gray;
         b {
+          color: black;
           margin-right: 5px;
         }
         margin-bottom: 10px;
       }
+    }
+  }
+
+  .url {
+    margin-top: 10px;
+    text-decoration: none;
+    color: blue;
+    padding-bottom: 40px;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 

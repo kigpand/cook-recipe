@@ -32,6 +32,14 @@ const ListView = () => {
           })}
         </div>
       </div>
+      <a
+        href={currentRecipe!.url}
+        className={styles.url}
+        target={"_blank"}
+        rel="noreferrer"
+      >
+        레시피 링크 바로가기
+      </a>
     </div>
   );
 };
