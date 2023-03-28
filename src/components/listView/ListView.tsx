@@ -9,6 +9,7 @@ const ListView = () => {
       <div className={styles.title}>{currentRecipe?.name}</div>
       <img src={currentRecipe!.imgUrl[0]} alt="img" className={styles.img} />
       <Tags />
+      <div className={styles.content}>{currentRecipe?.content}</div>
       <div className={styles.materials}>
         <div className={styles.materialTitle}>재료</div>
         <div className={styles.items}>

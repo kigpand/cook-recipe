@@ -6,4 +6,5 @@ export interface IRecipe {
   recipe: string[];
   tag: string[];
   url: string;
+  content: string;
 }
