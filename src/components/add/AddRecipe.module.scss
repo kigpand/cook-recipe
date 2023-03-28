@@ -13,13 +13,31 @@
 
   .container {
     width: 400px;
-    height: 70%;
     background-color: white;
 
     .header {
       padding: 10px;
       background-color: $shadowBlue;
       color: white;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      padding: 15px 10px;
+      border-bottom: 1px solid $borderColor;
+
+      .text {
+        margin-right: 10px;
+        font-weight: 700;
+      }
+
+      .input {
+        outline: none;
+        height: 20px;
+        width: 50%;
+        border: 1px solid $borderColor;
+      }
     }
   }
 }

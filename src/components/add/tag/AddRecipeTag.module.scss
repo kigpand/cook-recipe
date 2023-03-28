@@ -1,0 +1,50 @@
+@import "../../../styles/color.scss";
+
+.addRecipeTag {
+  padding: 15px 10px;
+  border-bottom: 1px solid $borderColor;
+  .title {
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .body {
+    display: flex;
+    align-items: center;
+
+    .input {
+      border: 1px solid $borderColor;
+      outline: none;
+      height: 20px;
+    }
+
+    .addBtn {
+      background-color: $shadowBlue;
+      color: white;
+      padding: 5px 8px;
+      font-size: 13px;
+      border-radius: 4px;
+      margin-left: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: blue;
+      }
+    }
+
+    .container {
+      margin-left: 10px;
+      .child {
+        margin-top: 3px;
+        font-size: 13px;
+        font-weight: 500;
+        color: blue;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
