@@ -16,7 +16,7 @@ const ListItem = ({ item, onView }: IListItem) => {
       onMouseOver={() => setBack(true)}
       onMouseLeave={() => setBack(false)}
     >
-      <img src={item.imgUrl} className={styles.img} alt="view" />
+      <img src={item.imgUrl[0]} className={styles.img} alt="view" />
       {back && <div className={styles.back}>{item.name}</div>}
     </div>
   );

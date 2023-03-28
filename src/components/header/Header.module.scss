@@ -5,4 +5,38 @@
   height: 60px;
   box-shadow: $boxBlackShadow;
   background-color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .input {
+    width: 200px;
+    height: 25px;
+    border: 1px solid lightgray;
+    outline: none;
+    border-radius: 4px;
+
+    &::placeholder {
+      color: lightgray;
+    }
+  }
+
+  .btns {
+    position: absolute;
+    right: 10%;
+    display: flex;
+    div {
+      cursor: pointer;
+
+      &:hover {
+        color: blue;
+        transform: scale(1.1);
+      }
+    }
+
+    .add {
+      margin-right: 30px;
+    }
+  }
 }

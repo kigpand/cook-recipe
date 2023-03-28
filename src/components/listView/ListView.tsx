@@ -1,4 +1,5 @@
 import useRecipe from "../../store/recipe";
+import Tags from "../common/tags/Tags";
 import styles from "./ListView.module.scss";
 
 const ListView = () => {
@@ -6,7 +7,8 @@ const ListView = () => {
   return (
     <div className={styles.listView} id="listView">
       <div className={styles.title}>{currentRecipe?.name}</div>
-      <img src={currentRecipe!.imgUrl} alt="img" className={styles.img} />
+      <img src={currentRecipe!.imgUrl[0]} alt="img" className={styles.img} />
+      <Tags />
       <div className={styles.materials}>
         <div className={styles.materialTitle}>재료</div>
         <div className={styles.items}>

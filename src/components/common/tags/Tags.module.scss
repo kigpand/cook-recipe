@@ -1,0 +1,14 @@
+.tags {
+  color: blue;
+  display: flex;
+  margin-top: 10px;
+
+  .tag {
+    margin-right: 10px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

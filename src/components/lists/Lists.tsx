@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ListItem from "../listItem/ListItem";
 import ListView from "../listView/ListView";
 import styles from "./Lists.module.scss";
