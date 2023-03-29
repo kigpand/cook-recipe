@@ -17,6 +17,7 @@ const AddRecipeTag = ({ onAddTag, removeTag }: IAddRecipeTag) => {
     if (!containerRef.current) return;
     onAddTag(input.value);
     setChild([...child, input.value]);
+    input.onClear();
   };
 
   const onRemove = (data: string) => {
@@ -29,7 +30,12 @@ const AddRecipeTag = ({ onAddTag, removeTag }: IAddRecipeTag) => {
     <div className={styles.addRecipeTag}>
       <div className={styles.title}>태그</div>
       <div className={styles.body}>
-        <input type="text" className={styles.input} {...input} />
+        <input
+          type="text"
+          className={styles.input}
+          value={input.value}
+          onChange={input.onChange}
+        />
         <div className={styles.addBtn} onClick={onAdd}>
           등록
         </div>

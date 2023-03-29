@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "kigpand",
     "name": "제육볶음",
     "material": [
       "돼지고기 600g",
@@ -28,7 +28,7 @@
     "url": "https://www.youtube.com/watch?v=j7s9VRsrm9o"
   },
   {
-    "id": 2,
+    "id": "kigpand",
     "name": "제육볶음",
     "material": [
       "돼지고기 600g",
@@ -56,7 +56,7 @@
     "url": "https://www.youtube.com/watch?v=j7s9VRsrm9o"
   },
   {
-    "id": 3,
+    "id": "kigpand",
     "name": "제육볶음",
     "material": [
       "돼지고기 600g",
@@ -84,7 +84,7 @@
     "url": "https://www.youtube.com/watch?v=j7s9VRsrm9o"
   },
   {
-    "id": 4,
+    "id": "kigpand",
     "name": "제육볶음",
     "material": [
       "돼지고기 600g",

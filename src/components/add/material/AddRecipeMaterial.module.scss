@@ -1,7 +1,7 @@
 @import "../../../styles/color.scss";
 @import "../../../styles/common.scss";
 
-.addRecipeTag {
+.addRecipeMaterial {
   padding: 15px 10px;
   border-bottom: 1px solid $borderColor;
 
@@ -11,11 +11,9 @@
   }
 
   .body {
-    display: flex;
-    align-items: center;
-
     .input {
       @include recipeInput;
+      width: 50%;
     }
 
     .addBtn {
@@ -24,6 +22,8 @@
       padding: 5px 8px;
       font-size: 13px;
       border-radius: 4px;
+      outline: none;
+      border: none;
       margin-left: 5px;
       cursor: pointer;
 
@@ -31,19 +31,25 @@
         background-color: blue;
       }
     }
+  }
 
-    .container {
-      margin-left: 10px;
-      .child {
-        margin-top: 3px;
-        font-size: 13px;
-        font-weight: 500;
-        color: blue;
+  .materials {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 14px;
+    row-gap: 5px;
 
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-        }
+    .item {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .close {
+        font-size: 10px;
+        position: absolute;
+        right: 10%;
+        cursor: pointer;
       }
     }
   }

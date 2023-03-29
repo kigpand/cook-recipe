@@ -13,6 +13,8 @@
 
   .container {
     width: 400px;
+    max-height: 70vh;
+    overflow-y: auto;
     background-color: white;
 
     .header {
@@ -33,10 +35,8 @@
       }
 
       .input {
-        outline: none;
-        height: 20px;
+        @include recipeInput;
         width: 50%;
-        border: 1px solid $borderColor;
       }
     }
   }
