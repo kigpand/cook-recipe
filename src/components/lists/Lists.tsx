@@ -4,9 +4,14 @@ import styles from "./Lists.module.scss";
 import recipeJSON from "../../data/recipe.json";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
+import { useEffect } from "react";
 
 const Lists = () => {
-  const { currentRecipe, setCurrentRecipe } = useRecipe();
+  const { currentRecipe, recipes, setCurrentRecipe, setRecipes } = useRecipe();
+
+  useEffect(() => {
+    setRecipes(recipeJSON);
+  }, []);
 
   function onView(recipe: IRecipe) {
     setCurrentRecipe(recipe);
@@ -27,7 +32,7 @@ const Lists = () => {
   return (
     <div className={styles.lists} onClick={unView}>
       <div className={styles.main}>여러분의 레시피를 등록해보세요!</div>
-      {recipeJSON.map((item: IRecipe, i: number) => {
+      {recipes.map((item: IRecipe, i: number) => {
         return <ListItem key={i} item={item} onView={onView} />;
       })}
       {currentRecipe && <ListView />}

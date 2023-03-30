@@ -7,8 +7,13 @@ import AddRecipeMaterial from "./material/AddRecipeMaterial";
 import AddRecipeItem from "./recipe/AddRecipeItem";
 import { useItemArr } from "../../hook/useItemArr";
 import AddTitleComponent from "../common/addTitleComponent/AddTitleComponent";
+import { IRecipe } from "../../interface/IRecipe";
+import useRecipe from "../../store/recipe";
+import useUser from "../../store/user";
 
 const AddRecipe = () => {
+  const { addRecipes, setOnAdd } = useRecipe();
+  const { user } = useUser();
   const [img, setImg] = useState<string[]>([]);
   const tags = useItemArr([]);
   const materails = useItemArr([]);
@@ -22,8 +27,19 @@ const AddRecipe = () => {
   }
 
   const onSubmit = () => {
-    console.log(img);
-    console.log(title.value);
+    if (!user) return;
+    const recipe: IRecipe = {
+      id: user.id,
+      name: title.value,
+      material: materails.arr,
+      imgUrl: img,
+      recipe: recipes.arr,
+      tag: tags.arr,
+      url: link.value,
+      content: content.value,
+    };
+    addRecipes(recipe);
+    setOnAdd(false);
   };
 
   return (
@@ -53,7 +69,9 @@ const AddRecipe = () => {
           <button className={styles.add} onClick={onSubmit}>
             등록
           </button>
-          <button className={styles.cancle}>취소</button>
+          <button className={styles.cancle} onClick={() => setOnAdd(false)}>
+            취소
+          </button>
         </div>
       </div>
     </div>

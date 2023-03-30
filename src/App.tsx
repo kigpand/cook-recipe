@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Lists />
       {isLogin && <Login />}
-      <AddRecipe />
+      {onAdd && <AddRecipe />}
     </div>
   );
 }
