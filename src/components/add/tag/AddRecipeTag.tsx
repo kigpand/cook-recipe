@@ -4,27 +4,24 @@ import AddLayout from "../../common/addLayout/AddLayout";
 import styles from "./AddRecipeTag.module.scss";
 
 interface IAddRecipeTag {
+  tags: string[];
   onAddTag: (data: string) => void;
   removeTag: (data: string) => void;
 }
 
-const AddRecipeTag = ({ onAddTag, removeTag }: IAddRecipeTag) => {
+const AddRecipeTag = ({ tags, onAddTag, removeTag }: IAddRecipeTag) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const input = useInput("");
-  const [child, setChild] = useState<string[]>([]);
 
   const onAdd = () => {
-    if (child.length > 2) return alert("3개 이상은 등록이 불가능 합니다");
+    if (tags.length > 2) return alert("3개 이상은 등록이 불가능 합니다");
     if (!containerRef.current) return;
     onAddTag(input.value);
-    setChild([...child, input.value]);
     input.onClear();
   };
 
   const onRemove = (data: string) => {
     removeTag(data);
-    const result = child.filter((item: string) => item !== data);
-    setChild(result);
   };
 
   return (
@@ -32,7 +29,7 @@ const AddRecipeTag = ({ onAddTag, removeTag }: IAddRecipeTag) => {
       <div className={styles.body}>
         <AddLayout title="태그 등록" input={input} onAdd={onAdd} />
         <div className={styles.container} ref={containerRef}>
-          {child.map((item: string, i: number) => {
+          {tags.map((item: string, i: number) => {
             return (
               <div
                 className={styles.child}

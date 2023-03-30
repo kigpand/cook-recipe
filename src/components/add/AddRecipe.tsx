@@ -5,44 +5,21 @@ import { useInput } from "../../hook/userInput";
 import AddRecipeTag from "./tag/AddRecipeTag";
 import AddRecipeMaterial from "./material/AddRecipeMaterial";
 import AddRecipeItem from "./recipe/AddRecipeItem";
+import { useItemArr } from "../../hook/useItemArr";
+import AddTitleComponent from "../common/addTitleComponent/AddTitleComponent";
 
 const AddRecipe = () => {
   const [img, setImg] = useState<string[]>([]);
-  const [tags, setTags] = useState<string[]>([]);
-  const [materials, setMaterials] = useState<string[]>([]);
-  const [recipes, setRecipes] = useState<string[]>([]);
+  const tags = useItemArr([]);
+  const materails = useItemArr([]);
+  const recipes = useItemArr([]);
   const title = useInput("");
+  const content = useInput("");
+  const link = useInput("");
 
   function addImg(data: string[]) {
     setImg(data);
   }
-
-  const onAddTag = (data: string) => {
-    setTags([...tags, data]);
-  };
-
-  const removeTag = (data: string) => {
-    const result = tags.filter((item: string) => item !== data);
-    setTags(result);
-  };
-
-  const onAddMaterials = (data: string) => {
-    setMaterials([...materials, data]);
-  };
-
-  const removeMaterials = (data: string) => {
-    const result = materials.filter((item: string) => item !== data);
-    setMaterials(result);
-  };
-
-  const onAddRecipes = (data: string) => {
-    setRecipes([...recipes, data]);
-  };
-
-  const removeRecipes = (data: string) => {
-    const result = recipes.filter((item: string) => item !== data);
-    setRecipes(result);
-  };
 
   const onSubmit = () => {
     console.log(img);
@@ -53,27 +30,31 @@ const AddRecipe = () => {
     <div className={styles.addRecipe}>
       <div className={styles.container}>
         <div className={styles.header}>게시글 작성</div>
-        <div className={styles.title}>
-          <div className={styles.text}>제목</div>
-          <input type="text" className={styles.input} />
-        </div>
+        <AddTitleComponent title="제목" input={title} />
         <AddImgFile addImg={addImg} />
-        <AddRecipeTag onAddTag={onAddTag} removeTag={removeTag} />
+        <AddRecipeTag
+          tags={tags.arr}
+          onAddTag={tags.onAdd}
+          removeTag={tags.onRemove}
+        />
         <AddRecipeMaterial
-          materials={materials}
-          onAddMaterials={onAddMaterials}
-          removeMaterials={removeMaterials}
+          materials={materails.arr}
+          onAddMaterials={materails.onAdd}
+          removeMaterials={materails.onRemove}
         />
         <AddRecipeItem
-          recipes={recipes}
-          onAddRecipes={onAddRecipes}
-          removeRecipes={removeRecipes}
+          recipes={recipes.arr}
+          onAddRecipes={recipes.onAdd}
+          removeRecipes={recipes.onRemove}
         />
-        <div className={styles.title}>
-          <div className={styles.text}>링크</div>
-          <input type="text" className={styles.input} />
+        <AddTitleComponent title="소개" input={content} />
+        <AddTitleComponent title="동영상 링크" input={link} />
+        <div className={styles.btns}>
+          <button className={styles.add} onClick={onSubmit}>
+            등록
+          </button>
+          <button className={styles.cancle}>취소</button>
         </div>
-        <div onClick={onSubmit}>등록</div>
       </div>
     </div>
   );

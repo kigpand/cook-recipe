@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./AddLayout.module.scss";
 
 interface IAddLayout {
@@ -6,7 +7,7 @@ interface IAddLayout {
   onAdd: () => void;
 }
 
-const AddLayout = ({ title, input, onAdd }: IAddLayout) => {
+const AddLayout = React.memo(({ title, input, onAdd }: IAddLayout) => {
   return (
     <div className={styles.addLayout}>
       <div className={styles.title}>{title}</div>
@@ -23,6 +24,6 @@ const AddLayout = ({ title, input, onAdd }: IAddLayout) => {
       </div>
     </div>
   );
-};
+});
 
 export default AddLayout;

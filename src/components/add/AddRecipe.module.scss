@@ -23,20 +23,34 @@
       color: white;
     }
 
-    .title {
-      display: flex;
-      align-items: center;
-      padding: 15px 10px;
-      border-bottom: 1px solid $borderColor;
+    .btns {
+      padding: 10px 20px;
+      @include flexSort;
 
-      .text {
-        margin-right: 10px;
-        font-weight: 700;
+      button {
+        border: none;
+        outline: none;
+        padding: 5px 8px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
       }
 
-      .input {
-        @include recipeInput;
-        width: 50%;
+      .add {
+        background-color: $shadowBlue;
+        &:hover {
+          background-color: blue;
+        }
+      }
+
+      .cancle {
+        margin-left: 10px;
+        background-color: gray;
+
+        &:hover {
+          background-color: darkgray;
+        }
       }
     }
   }
