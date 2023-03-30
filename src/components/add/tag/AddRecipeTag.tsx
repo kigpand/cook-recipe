@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useInput } from "../../../hook/userInput";
+import AddLayout from "../../common/addLayout/AddLayout";
 import styles from "./AddRecipeTag.module.scss";
 
 interface IAddRecipeTag {
@@ -28,17 +29,8 @@ const AddRecipeTag = ({ onAddTag, removeTag }: IAddRecipeTag) => {
 
   return (
     <div className={styles.addRecipeTag}>
-      <div className={styles.title}>태그</div>
       <div className={styles.body}>
-        <input
-          type="text"
-          className={styles.input}
-          value={input.value}
-          onChange={input.onChange}
-        />
-        <div className={styles.addBtn} onClick={onAdd}>
-          등록
-        </div>
+        <AddLayout title="태그 등록" input={input} onAdd={onAdd} />
         <div className={styles.container} ref={containerRef}>
           {child.map((item: string, i: number) => {
             return (

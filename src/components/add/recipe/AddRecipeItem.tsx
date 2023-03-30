@@ -1,4 +1,5 @@
 import { useInput } from "../../../hook/userInput";
+import AddLayout from "../../common/addLayout/AddLayout";
 import styles from "./AddRecipeItem.module.scss";
 
 interface IAddRecipeItem {
@@ -21,18 +22,7 @@ const AddRecipeItem = ({
 
   return (
     <div className={styles.addRecipeItem}>
-      <div className={styles.title}>레시피 등록</div>
-      <div className={styles.body}>
-        <input
-          type="text"
-          className={styles.input}
-          value={input.value}
-          onChange={input.onChange}
-        />
-        <button className={styles.addBtn} onClick={onAdd}>
-          등록
-        </button>
-      </div>
+      <AddLayout title="레시피 등록" input={input} onAdd={onAdd} />
       <div className={styles.container}>
         {recipes.map((item: string, i: number) => {
           return (
