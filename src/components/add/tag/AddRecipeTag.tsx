@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useInput } from "../../../hook/userInput";
 import AddLayout from "../../common/addLayout/AddLayout";
 import styles from "./AddRecipeTag.module.scss";
@@ -46,4 +46,4 @@ const AddRecipeTag = ({ tags, onAddTag, removeTag }: IAddRecipeTag) => {
   );
 };
 
-export default AddRecipeTag;
+export default React.memo(AddRecipeTag);

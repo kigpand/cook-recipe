@@ -1,3 +1,4 @@
+import React from "react";
 import { useInput } from "../../../hook/userInput";
 import AddLayout from "../../common/addLayout/AddLayout";
 import styles from "./AddRecipeMaterial.module.scss";
@@ -43,4 +44,4 @@ const AddRecipeMaterial = ({
   );
 };
 
-export default AddRecipeMaterial;
+export default React.memo(AddRecipeMaterial);

@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./AddTitleComponent.module.scss";
 
 interface IAddTitleComponent {
@@ -6,6 +7,7 @@ interface IAddTitleComponent {
 }
 
 const AddTitleComponent = ({ title, input }: IAddTitleComponent) => {
+  console.log(`${input.value} component`);
   return (
     <div className={styles.addTitleComponent}>
       <div className={styles.text}>{title}</div>
@@ -19,4 +21,4 @@ const AddTitleComponent = ({ title, input }: IAddTitleComponent) => {
   );
 };
 
-export default AddTitleComponent;
+export default React.memo(AddTitleComponent);

@@ -7,7 +7,7 @@ interface IAddLayout {
   onAdd: () => void;
 }
 
-const AddLayout = React.memo(({ title, input, onAdd }: IAddLayout) => {
+const AddLayout = ({ title, input, onAdd }: IAddLayout) => {
   return (
     <div className={styles.addLayout}>
       <div className={styles.title}>{title}</div>
@@ -24,6 +24,6 @@ const AddLayout = React.memo(({ title, input, onAdd }: IAddLayout) => {
       </div>
     </div>
   );
-});
+};
 
 export default AddLayout;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styles from "./AddRecipe.module.scss";
 import AddImgFile from "./imgFile/AddImgFile";
 import { useInput } from "../../hook/userInput";
@@ -16,22 +16,22 @@ const AddRecipe = () => {
   const { user } = useUser();
   const [img, setImg] = useState<string[]>([]);
   const tags = useItemArr([]);
-  const materails = useItemArr([]);
+  const materials = useItemArr([]);
   const recipes = useItemArr([]);
   const title = useInput("");
   const content = useInput("");
   const link = useInput("");
 
-  function addImg(data: string[]) {
+  const addImg = useCallback((data: string[]) => {
     setImg(data);
-  }
+  }, []);
 
   const onSubmit = () => {
     if (!user) return;
     const recipe: IRecipe = {
       id: user.id,
       name: title.value,
-      material: materails.arr,
+      material: materials.arr,
       imgUrl: img,
       recipe: recipes.arr,
       tag: tags.arr,
@@ -54,9 +54,9 @@ const AddRecipe = () => {
           removeTag={tags.onRemove}
         />
         <AddRecipeMaterial
-          materials={materails.arr}
-          onAddMaterials={materails.onAdd}
-          removeMaterials={materails.onRemove}
+          materials={materials.arr}
+          onAddMaterials={materials.onAdd}
+          removeMaterials={materials.onRemove}
         />
         <AddRecipeItem
           recipes={recipes.arr}

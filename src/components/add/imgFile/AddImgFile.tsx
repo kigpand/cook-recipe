@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./AddImgFile.module.scss";
 
 interface IAddImgFile {
@@ -65,4 +65,4 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
   );
 };
 
-export default AddImgFile;
+export default React.memo(AddImgFile);
