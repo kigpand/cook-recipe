@@ -2,27 +2,10 @@
 @import "../../styles/color.scss";
 
 .login {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  @include flexSort;
+  @include modal;
 
   .container {
-    width: 350px;
-    height: 60vh;
-    text-align: center;
-    background-color: white;
-    position: relative;
-
-    .header {
-      font-size: 20px;
-      font-weight: 700;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
+    @include container;
   }
 
   .btns {

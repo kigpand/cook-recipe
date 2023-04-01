@@ -1,0 +1,33 @@
+@import "../../../styles/color.scss";
+@import "../../../styles/common.scss";
+
+.joinInput {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+
+  .text {
+    width: 20%;
+    margin-right: 10px;
+    font-weight: 700;
+  }
+
+  .input {
+    @include recipeInput;
+    width: 50%;
+  }
+
+  .idCheck {
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: $shadowBlue;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: blue;
+    }
+  }
+}

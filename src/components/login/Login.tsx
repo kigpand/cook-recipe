@@ -4,13 +4,18 @@ import Input from "../common/input/Input";
 import styles from "./Login.module.scss";
 
 const Login = () => {
-  const { loginUser, unLogin } = useUser();
+  const { loginUser, unLogin, setJoin } = useUser();
   const id = useInput("");
   const pw = useInput("");
 
   const onLogin = () => {
     loginUser({ id: id.value });
     unLogin();
+  };
+
+  const onJoin = () => {
+    unLogin();
+    setJoin(true);
   };
 
   return (
@@ -23,7 +28,9 @@ const Login = () => {
           <button className={styles.loginBtn} onClick={onLogin}>
             로그인
           </button>
-          <button className={styles.join}>회원가입</button>
+          <button className={styles.join} onClick={onJoin}>
+            회원가입
+          </button>
         </div>
       </div>
     </div>
