@@ -23,7 +23,7 @@ const Login = () => {
       <div className={styles.container}>
         <div className={styles.header}>로그인</div>
         <Input width="80%" placeholder="아이디" onChange={id.onChange} />
-        <Input width="80%" placeholder="비밀번호" onChange={pw.onChange} />
+        <Input width="80%" placeholder="비밀번호" onChange={pw.onChange} />
         <div className={styles.btns}>
           <button className={styles.loginBtn} onClick={onLogin}>
             로그인

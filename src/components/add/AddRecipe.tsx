@@ -10,14 +10,15 @@ import AddTitleComponent from "../common/addTitleComponent/AddTitleComponent";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 import useUser from "../../store/user";
+import recipeJSON from "../../data/recipe.json";
 
 const AddRecipe = () => {
-  const { addRecipes, setOnAdd } = useRecipe();
+  const { setRecipes, setOnAdd, setSaveRecipes } = useRecipe();
   const { user } = useUser();
   const [img, setImg] = useState<string[]>([]);
   const tags = useItemArr([]);
   const materials = useItemArr([]);
-  const recipes = useItemArr([]);
+  const recipeList = useItemArr([]);
   const title = useInput("");
   const content = useInput("");
   const link = useInput("");
@@ -33,12 +34,13 @@ const AddRecipe = () => {
       name: title.value,
       material: materials.arr,
       imgUrl: img,
-      recipe: recipes.arr,
+      recipe: recipeList.arr,
       tag: tags.arr,
       url: link.value,
       content: content.value,
     };
-    addRecipes(recipe);
+    setRecipes([...recipeJSON, recipe]);
+    setSaveRecipes([...recipeJSON, recipe]);
     setOnAdd(false);
   };
 
@@ -59,9 +61,9 @@ const AddRecipe = () => {
           removeMaterials={materials.onRemove}
         />
         <AddRecipeItem
-          recipes={recipes.arr}
-          onAddRecipes={recipes.onAdd}
-          removeRecipes={recipes.onRemove}
+          recipes={recipeList.arr}
+          onAddRecipes={recipeList.onAdd}
+          removeRecipes={recipeList.onRemove}
         />
         <AddTitleComponent title="소개" input={content} />
         <AddTitleComponent title="동영상 링크" input={link} />

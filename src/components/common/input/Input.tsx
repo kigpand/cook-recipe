@@ -11,7 +11,7 @@ const Input = React.memo(({ width, placeholder, onChange }: IInput) => {
   return (
     <input
       className={styles.input}
-      type="text"
+      type={placeholder === "비밀번호" ? "password" : "text"}
       placeholder={placeholder}
       style={{ width: width }}
       onChange={onChange}

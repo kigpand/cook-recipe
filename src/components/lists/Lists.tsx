@@ -7,10 +7,17 @@ import useRecipe from "../../store/recipe";
 import { useEffect } from "react";
 
 const Lists = () => {
-  const { currentRecipe, recipes, setCurrentRecipe, setRecipes } = useRecipe();
+  const {
+    currentRecipe,
+    recipes,
+    setCurrentRecipe,
+    setRecipes,
+    setSaveRecipes,
+  } = useRecipe();
 
   useEffect(() => {
     setRecipes(recipeJSON);
+    setSaveRecipes(recipeJSON);
   }, []);
 
   function onView(recipe: IRecipe) {
