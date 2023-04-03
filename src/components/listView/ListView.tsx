@@ -1,13 +1,36 @@
+import React, { useState } from "react";
 import useRecipe from "../../store/recipe";
 import Tags from "../common/tags/Tags";
+import ImgSlider from "../imgSlider/ImgSlider";
 import styles from "./ListView.module.scss";
 
 const ListView = () => {
   const { currentRecipe } = useRecipe();
+  const [imgs, setImgs] = useState<string[]>([]);
+
+  const onImgView = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.stopPropagation();
+    if (!currentRecipe) return;
+    if (currentRecipe?.imgUrl.length === 0) {
+      return alert("보여줄 이미지가 존재하지 않습니다.");
+    }
+    setImgs(currentRecipe?.imgUrl);
+  };
+
+  const onClearItem = () => {
+    setImgs([]);
+  };
+
   return (
     <div className={styles.listView} id="listView">
+      {imgs.length > 0 && <ImgSlider imgs={imgs} onClearItem={onClearItem} />}
       <div className={styles.title}>{currentRecipe?.name}</div>
-      <img src={currentRecipe!.imgUrl[0]} alt="img" className={styles.img} />
+      <img
+        src={currentRecipe!.imgUrl[0]}
+        alt="img"
+        className={styles.img}
+        onClick={onImgView}
+      />
       <Tags />
       <div className={styles.content}>{currentRecipe?.content}</div>
       <div className={styles.materials}>

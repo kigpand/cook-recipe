@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useInput } from "../../../hook/userInput";
 import AddLayout from "../../common/addLayout/AddLayout";
 import styles from "./AddRecipeTag.module.scss";
