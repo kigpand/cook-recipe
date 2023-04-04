@@ -17,6 +17,7 @@ const AddRecipeItem = ({
   const input = useInput("");
 
   const onAdd = () => {
+    if (input.value.trim() === "") return alert("레시피를 입력해 주세요");
     onAddRecipes(input.value);
     input.onClear();
   };
@@ -28,7 +29,7 @@ const AddRecipeItem = ({
         {recipes.map((item: string, i: number) => {
           return (
             <div className={styles.item} key={i}>
-              {item}
+              <div className={styles.text}>{item}</div>
               <div className={styles.close} onClick={() => removeRecipes(item)}>
                 x
               </div>

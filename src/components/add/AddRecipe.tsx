@@ -13,7 +13,7 @@ import useUser from "../../store/user";
 import recipeJSON from "../../data/recipe.json";
 
 const AddRecipe = () => {
-  const { setRecipes, setOnAdd, setSaveRecipes } = useRecipe();
+  const { setRecipes, setOnAdd, saveRecipes, setSaveRecipes } = useRecipe();
   const { user } = useUser();
   const [img, setImg] = useState<string[]>([]);
   const tags = useItemArr([]);
@@ -39,8 +39,8 @@ const AddRecipe = () => {
       url: link.value,
       content: content.value,
     };
-    setRecipes([...recipeJSON, recipe]);
-    setSaveRecipes([...recipeJSON, recipe]);
+    setRecipes([...saveRecipes, recipe]);
+    setSaveRecipes([...saveRecipes, recipe]);
     setOnAdd(false);
   };
 

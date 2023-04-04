@@ -17,6 +17,7 @@ const AddRecipeMaterial = ({
   const input = useInput("");
 
   const onAdd = () => {
+    if (input.value.trim() === "") return alert("재료를 입력해 주세요");
     onAddMaterials(input.value);
     input.onClear();
   };
@@ -32,7 +33,7 @@ const AddRecipeMaterial = ({
         {materials.map((item: string, i: number) => {
           return (
             <div className={styles.item} key={i}>
-              {item}
+              <div className={styles.text}>{item}</div>
               <div className={styles.close} onClick={() => onRemove(item)}>
                 x
               </div>

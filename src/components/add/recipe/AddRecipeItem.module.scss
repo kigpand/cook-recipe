@@ -42,9 +42,13 @@
       display: flex;
       align-items: center;
       width: 70%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+
+      .text {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 
       .close {
         position: absolute;

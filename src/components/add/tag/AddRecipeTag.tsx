@@ -16,6 +16,7 @@ const AddRecipeTag = ({ tags, onAddTag, removeTag }: IAddRecipeTag) => {
   const onAdd = () => {
     if (tags.length > 2) return alert("3개 이상은 등록이 불가능 합니다");
     if (!containerRef.current) return;
+    if (input.value.trim() === "") return alert("태그를 입력해 주세요");
     onAddTag(input.value);
     input.onClear();
   };
