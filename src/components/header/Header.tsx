@@ -18,7 +18,7 @@ const Header = () => {
       setIsMy(false);
       return;
     }
-    const filter = recipes.filter((item: IRecipe) => item.id === user.id);
+    const filter = saveRecipes.filter((item: IRecipe) => item.id === user.id);
     setRecipes(filter);
     setIsMy(true);
   };
@@ -28,22 +28,37 @@ const Header = () => {
       const filter = saveRecipes.filter((item: IRecipe) =>
         item.name.includes(search.value)
       );
+      setIsMy(false);
       setRecipes(filter);
-      setIsMy(true);
       search.onClear();
     }
   };
 
+  const onReload = () => {
+    if (recipes.length === saveRecipes.length) return;
+    setRecipes(saveRecipes);
+    setIsMy(false);
+    search.onClear();
+  };
+
   return (
     <div className={styles.header}>
-      <input
-        type="text"
-        className={styles.input}
-        placeholder="...search"
-        onKeyDown={onSearch}
-        value={search.value}
-        onChange={search.onChange}
-      ></input>
+      <div className={styles.search}>
+        <input
+          type="text"
+          className={styles.input}
+          placeholder="search"
+          onKeyDown={onSearch}
+          value={search.value}
+          onChange={search.onChange}
+        ></input>
+        <img
+          src="/imgs/reload.png"
+          alt="새로고침"
+          className={styles.reload}
+          onClick={onReload}
+        ></img>
+      </div>
       <div className={styles.btns}>
         {user && (
           <div className={styles.add} onClick={onMyRecipe}>
