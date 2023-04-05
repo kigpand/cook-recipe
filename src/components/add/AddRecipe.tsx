@@ -10,7 +10,6 @@ import AddTitleComponent from "../common/addTitleComponent/AddTitleComponent";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 import useUser from "../../store/user";
-import recipeJSON from "../../data/recipe.json";
 
 const AddRecipe = () => {
   const { setRecipes, setOnAdd, saveRecipes, setSaveRecipes } = useRecipe();

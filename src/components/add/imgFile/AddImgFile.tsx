@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import ImgView from "../imgView/ImgView";
 import styles from "./AddImgFile.module.scss";
 
 interface IAddImgFile {
@@ -8,10 +9,13 @@ interface IAddImgFile {
 const AddImgFile = ({ addImg }: IAddImgFile) => {
   const ref = useRef<HTMLInputElement>(null);
   const [fileArr, setFileArr] = useState<string[]>([]);
+  const [currentImg, setCurrentImg] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // 이미지 화면에 띄우기
     if (!e.target.files) return;
+    setLoading(true);
     const imgArr: string[] = [];
     const length = e.target.files.length;
     for (let i = 0; i < length; i++) {
@@ -25,6 +29,7 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
             setFileArr(imgArr);
           }
         }
+        setLoading(false);
       };
     }
   };
@@ -35,14 +40,23 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
     }
   };
 
-  const onView = () => {
-    console.log(fileArr);
+  const onView = (img: string) => {
+    setCurrentImg(img);
+  };
+
+  const onClearItem = () => {
+    setCurrentImg("");
   };
 
   return (
     <div className={styles.addImgFile}>
       <div className={styles.header}>이미지 등록</div>
       <div className={styles.body}>
+        {loading && (
+          <div className={styles.loadingContainer}>
+            <div className={styles.loading}></div>
+          </div>
+        )}
         <img
           src="imgs/camera.png"
           alt="camera"
@@ -56,11 +70,24 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
           onChange={onFileChange}
           hidden
         ></input>
-        {/* {fileArr.length > 0 && <div onClick={onView}>미리보기</div>} */}
-        <div className={styles.preView} onClick={onView}>
-          미리보기
+        <div className={styles.arr}>
+          {fileArr.length > 0 &&
+            fileArr.map((item: string, i: number) => {
+              return (
+                <img
+                  src={item}
+                  alt={item}
+                  key={i}
+                  className={styles.img}
+                  onClick={() => onView(item)}
+                />
+              );
+            })}
         </div>
       </div>
+      {currentImg !== "" && (
+        <ImgView img={currentImg} onClearItem={onClearItem} />
+      )}
     </div>
   );
 };
