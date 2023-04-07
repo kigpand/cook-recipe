@@ -5,7 +5,7 @@ import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 
 const Lists = () => {
-  const { currentRecipe, recipes, setCurrentRecipe } = useRecipe();
+  const { currentRecipe, recipes, saveRecipes, setCurrentRecipe } = useRecipe();
 
   function onView(recipe: IRecipe) {
     setCurrentRecipe(recipe);
@@ -25,7 +25,19 @@ const Lists = () => {
 
   return (
     <div className={styles.lists} onClick={unView}>
-      <div className={styles.main}>여러분의 레시피를 등록해보세요!</div>
+      <div className={styles.main}>
+        {recipes.length === saveRecipes.length ? (
+          <div className={styles.normal}>
+            <img src="/imgs/recipe1.jpg" alt="img"></img>
+            <div>여러분의 레시피를 등록해보세요!</div>
+          </div>
+        ) : (
+          <div className={styles.normal}>
+            <img src="/imgs/recipe2.jpg" alt="img"></img>
+            <div>모두에게 자신의 레시피를 공유해보세요!</div>
+          </div>
+        )}
+      </div>
       {recipes.map((item: IRecipe, i: number) => {
         return <ListItem key={i} item={item} onView={onView} />;
       })}

@@ -38,6 +38,7 @@
   }
 
   .content {
+    width: 400px;
     margin-top: 10px;
     color: red;
     text-decoration: underline;
@@ -123,7 +124,8 @@
       width: 100%;
     }
 
-    .recipe {
+    .recipe,
+    .content {
       width: 95%;
     }
 

@@ -25,9 +25,11 @@ const Header = () => {
 
   const onSearch = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      const filter = saveRecipes.filter((item: IRecipe) =>
-        item.name.includes(search.value)
-      );
+      const filter = saveRecipes.filter((item: IRecipe) => {
+        const result = item.tag.find((tag: string) => tag === search.value);
+        return result ? item : false;
+      });
+      console.log(filter);
       setIsMy(false);
       setRecipes(filter);
       search.onClear();
@@ -53,7 +55,7 @@ const Header = () => {
           type="text"
           className={styles.input}
           placeholder="search"
-          onKeyDown={onSearch}
+          onKeyPress={onSearch}
           value={search.value}
           onChange={search.onChange}
         ></input>

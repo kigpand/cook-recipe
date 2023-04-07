@@ -13,9 +13,10 @@ const MobileSearch = ({ onCloseSearch, onCloseToggle }: IMobileSearch) => {
   const { saveRecipes, setRecipes } = useRecipe();
 
   const onSearch = () => {
-    const filter = saveRecipes.filter((item: IRecipe) =>
-      item.name.includes(input.value)
-    );
+    const filter = saveRecipes.filter((item: IRecipe) => {
+      const result = item.tag.find((tag: string) => tag === input.value);
+      return result ? item : false;
+    });
     setRecipes(filter);
     input.onClear();
     onCloseSearch();

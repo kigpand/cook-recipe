@@ -17,7 +17,25 @@
     grid-row-start: 1;
     grid-row-end: 4;
     box-shadow: $boxGreenShadow;
-    background-color: rgb(76, 255, 70);
     color: white;
+
+    .normal {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      div {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
