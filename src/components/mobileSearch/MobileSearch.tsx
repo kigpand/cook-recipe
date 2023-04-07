@@ -22,8 +22,14 @@ const MobileSearch = ({ onCloseSearch, onCloseToggle }: IMobileSearch) => {
     onCloseToggle();
   };
 
+  const closeSearch = () => {
+    onCloseToggle();
+    onCloseSearch();
+  };
+
   return (
     <div className={styles.mobileSearch}>
+      <div className={styles.back} onClick={closeSearch}></div>
       <div className={styles.container}>
         <div className={styles.title}>검색</div>
         <div className={styles.body}>

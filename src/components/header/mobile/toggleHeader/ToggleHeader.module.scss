@@ -17,8 +17,9 @@
 
   .close {
     background-color: whitesmoke;
-    width: 25px;
-    height: 25px;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
     position: absolute;
     right: 0;
     border-left: 1px solid $borderColor;

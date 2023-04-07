@@ -27,9 +27,11 @@ const ListView = () => {
   return (
     <div className={styles.listView} id="listView">
       {windowSize <= MOBILE_SIZE && (
-        <div className={styles.closeBtn} onClick={() => setCurrentRecipe(null)}>
-          close
-        </div>
+        <img
+          src={`${process.env.PUBLIC_URL}/imgs/close.png`}
+          className={styles.closeBtn}
+          onClick={() => setCurrentRecipe(null)}
+        ></img>
       )}
       {imgs.length > 0 && <ImgSlider imgs={imgs} onClearItem={onClearItem} />}
       <div className={styles.title}>{currentRecipe?.name}</div>

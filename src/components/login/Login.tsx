@@ -20,6 +20,7 @@ const Login = () => {
 
   return (
     <div className={styles.login}>
+      <div className={styles.back} onClick={unLogin}></div>
       <div className={styles.container}>
         <div className={styles.header}>로그인</div>
         <Input width="80%" placeholder="아이디" onChange={id.onChange} />

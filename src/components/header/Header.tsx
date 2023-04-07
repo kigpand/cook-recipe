@@ -34,6 +34,11 @@ const Header = () => {
     }
   };
 
+  const onLogout = () => {
+    setRecipes(saveRecipes);
+    logOutUser();
+  };
+
   const onReload = () => {
     if (recipes.length === saveRecipes.length) return;
     setRecipes(saveRecipes);
@@ -71,7 +76,7 @@ const Header = () => {
           </div>
         )}
         {user ? (
-          <div className={styles.login} onClick={logOutUser}>
+          <div className={styles.login} onClick={onLogout}>
             Logout
           </div>
         ) : (

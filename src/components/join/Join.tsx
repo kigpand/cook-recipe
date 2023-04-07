@@ -51,6 +51,7 @@ const Join = () => {
 
   return (
     <div className={styles.join}>
+      <div className={styles.back} onClick={() => setJoin(false)}></div>
       <div className={styles.container}>
         <div className={styles.header}>회원가입</div>
         <JoinInput
