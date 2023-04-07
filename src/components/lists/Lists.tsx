@@ -1,24 +1,11 @@
 import ListItem from "../listItem/ListItem";
 import ListView from "../listView/ListView";
 import styles from "./Lists.module.scss";
-import recipeJSON from "../../data/recipe.json";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
-import { useEffect } from "react";
 
 const Lists = () => {
-  const {
-    currentRecipe,
-    recipes,
-    setCurrentRecipe,
-    setRecipes,
-    setSaveRecipes,
-  } = useRecipe();
-
-  useEffect(() => {
-    setRecipes(recipeJSON);
-    setSaveRecipes(recipeJSON);
-  }, []);
+  const { currentRecipe, recipes, setCurrentRecipe } = useRecipe();
 
   function onView(recipe: IRecipe) {
     setCurrentRecipe(recipe);

@@ -54,4 +54,12 @@
       }
     }
   }
+
+  @include mobile {
+    .container {
+      width: 100%;
+      max-height: none;
+      height: 100%;
+    }
+  }
 }

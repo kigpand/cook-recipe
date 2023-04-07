@@ -6,6 +6,7 @@
   .img {
     width: 500px;
     height: 400px;
+    background-color: white;
   }
 
   .back {
@@ -15,5 +16,11 @@
     top: 0;
     left: 0;
     cursor: pointer;
+  }
+
+  @include mobile {
+    .img {
+      width: 100%;
+    }
   }
 }

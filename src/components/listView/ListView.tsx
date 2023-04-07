@@ -3,10 +3,13 @@ import useRecipe from "../../store/recipe";
 import Tags from "../common/tags/Tags";
 import ImgSlider from "../imgSlider/ImgSlider";
 import styles from "./ListView.module.scss";
+import { useWindowSize } from "../../hook/useWindowSize";
+import { MOBILE_SIZE } from "../../util/common";
 
 const ListView = () => {
-  const { currentRecipe } = useRecipe();
+  const { currentRecipe, setCurrentRecipe } = useRecipe();
   const [imgs, setImgs] = useState<string[]>([]);
+  const windowSize = useWindowSize();
 
   const onImgView = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
@@ -23,6 +26,11 @@ const ListView = () => {
 
   return (
     <div className={styles.listView} id="listView">
+      {windowSize <= MOBILE_SIZE && (
+        <div className={styles.closeBtn} onClick={() => setCurrentRecipe(null)}>
+          close
+        </div>
+      )}
       {imgs.length > 0 && <ImgSlider imgs={imgs} onClearItem={onClearItem} />}
       <div className={styles.title}>{currentRecipe?.name}</div>
       <img

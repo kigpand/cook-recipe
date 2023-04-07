@@ -46,3 +46,9 @@ $wide-screen: "(min-width: 1000px)";
   height: 20px;
   width: 50%;
 }
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}

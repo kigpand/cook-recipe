@@ -1,3 +1,5 @@
+@import "../../../styles/common.scss";
+
 .tags {
   color: blue;
   display: flex;
@@ -10,5 +12,9 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @include mobile {
+    padding-left: 10px;
   }
 }
