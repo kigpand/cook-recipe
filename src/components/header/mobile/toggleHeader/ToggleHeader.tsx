@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ToggleHeader.module.scss";
 import useUser from "../../../../store/user";
 import useRecipe from "../../../../store/recipe";
+import MobileSearch from "../../../mobileSearch/MobileSearch";
 
 interface IToggleHeader {
   onCloseToggle: () => void;
@@ -11,6 +12,7 @@ const ToggleHeader = ({ onCloseToggle }: IToggleHeader) => {
   const ref = useRef<HTMLDivElement>(null);
   const { user, logOutUser, onLogin } = useUser();
   const { setOnAdd } = useRecipe();
+  const [search, setSearch] = useState<boolean>(false);
 
   useEffect(() => {
     if (ref.current) {
@@ -40,9 +42,15 @@ const ToggleHeader = ({ onCloseToggle }: IToggleHeader) => {
     setOnAdd(true);
   };
 
+  const onCloseSearch = () => {
+    setSearch(false);
+  };
+
   return (
     <div className={styles.toggleHeader} ref={ref}>
-      <div className={styles.list}>검색</div>
+      <div className={styles.list} onClick={() => setSearch(true)}>
+        검색
+      </div>
       {user && <div className={styles.list}>내 레시피</div>}
       {user && (
         <div className={styles.list} onClick={onAddRecipe}>
@@ -61,6 +69,12 @@ const ToggleHeader = ({ onCloseToggle }: IToggleHeader) => {
       <div className={styles.close} onClick={onClose}>
         x
       </div>
+      {search && (
+        <MobileSearch
+          onCloseSearch={onCloseSearch}
+          onCloseToggle={onCloseToggle}
+        />
+      )}
     </div>
   );
 };
