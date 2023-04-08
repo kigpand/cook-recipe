@@ -29,7 +29,6 @@ const Header = () => {
         const result = item.tag.find((tag: string) => tag === search.value);
         return result ? item : false;
       });
-      console.log(filter);
       setIsMy(false);
       setRecipes(filter);
       search.onClear();
