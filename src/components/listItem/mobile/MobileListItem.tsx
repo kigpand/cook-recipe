@@ -15,7 +15,11 @@ const MobileListItem = ({ item }: IMobileListItem) => {
 
   return (
     <div className={styles.mobileListItem} onClick={() => onView(item)}>
-      <img src={item.imgUrl[0]} className={styles.img} alt="view" />
+      <img
+        src={item.imgUrl[0] || "imgs/noimg.png"}
+        className={styles.img}
+        alt="view"
+      />
       <div className={styles.body}>
         <div className={styles.title}>{item.name}</div>
         <div className={styles.content}>{item.content}</div>

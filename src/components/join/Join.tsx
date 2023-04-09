@@ -10,7 +10,6 @@ const Join = () => {
   const pwCheck = useInput("");
   const email = useInput("");
   const [idCheck, setIdCheck] = useState<boolean>(false);
-  const [isPw, setIsPw] = useState<boolean>(false);
   const { setJoin } = useUser();
   const emailRegEx =
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
@@ -20,10 +19,13 @@ const Join = () => {
     if (id.value !== "kigpand") {
       alert("사용가능한 아이디 입니다.");
       setIdCheck(true);
+    } else {
+      alert("중복된 아이디입니다");
     }
   };
 
-  const onPwCheck = () => {
+  const onSubmit = () => {
+    if (!idCheck) return alert("아이디 중복체크를 진행해주세요.");
     if (pw.value.match(passwordRegEx) === null) {
       return alert(
         "올바른 형식이 아닙니다. 비밀번호는 문자 + 숫자의 조합으로 8자 이상 20자 아래로 입력해주세요"
@@ -34,14 +36,6 @@ const Join = () => {
       pwCheck.onClear();
       return alert("비밀번호가 다릅니다. 다시 입력부탁드립니다.");
     }
-
-    setIsPw(true);
-    alert("사용가능한 비밀번호입니다.");
-  };
-
-  const onSubmit = () => {
-    if (!idCheck) return alert("아이디 중복체크를 진행해주세요.");
-    if (!isPw) return alert("비밀번호 확인을 진행해주세요.");
     if (!emailRegEx.test(email.value)) {
       return alert("올바른 형식의 이메일을 입력 부탁드립니다.");
     }
@@ -61,12 +55,7 @@ const Join = () => {
           onCheck={onIdCheck}
         />
         <JoinInput title="비밀번호" input={pw} isPassword={true} />
-        <JoinInput
-          title="비밀번호 체크"
-          input={pwCheck}
-          isPassword={true}
-          onCheck={onPwCheck}
-        />
+        <JoinInput title="비밀번호 체크" input={pwCheck} isPassword={true} />
         <JoinInput title="email" input={email} isPassword={false} />
         <div className={styles.btns}>
           <button className={styles.cancleBtn} onClick={() => setJoin(false)}>

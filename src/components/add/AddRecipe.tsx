@@ -45,6 +45,7 @@ const AddRecipe = () => {
 
   return (
     <div className={styles.addRecipe}>
+      <div className={styles.back} onClick={() => setOnAdd(false)}></div>
       <div className={styles.container}>
         <div className={styles.header}>게시글 작성</div>
         <AddTitleComponent title="제목" input={title} />

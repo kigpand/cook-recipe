@@ -23,11 +23,6 @@ const JoinInput = ({ title, input, isPassword, onCheck }: IJoinInput) => {
           중복체크
         </div>
       )}
-      {title === "비밀번호 체크" && (
-        <div className={styles.idCheck} onClick={onCheck}>
-          PW check
-        </div>
-      )}
     </div>
   );
 };

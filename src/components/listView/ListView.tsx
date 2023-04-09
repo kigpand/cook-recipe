@@ -36,7 +36,7 @@ const ListView = () => {
       {imgs.length > 0 && <ImgSlider imgs={imgs} onClearItem={onClearItem} />}
       <div className={styles.title}>{currentRecipe?.name}</div>
       <img
-        src={currentRecipe!.imgUrl[0]}
+        src={currentRecipe!.imgUrl[0] || "imgs/noimg.png"}
         alt="img"
         className={styles.img}
         onClick={onImgView}
@@ -68,14 +68,16 @@ const ListView = () => {
           })}
         </div>
       </div>
-      <a
-        href={currentRecipe!.url}
-        className={styles.url}
-        target={"_blank"}
-        rel="noreferrer"
-      >
-        레시피 링크 바로가기
-      </a>
+      {currentRecipe!.url !== "" && (
+        <a
+          href={currentRecipe!.url}
+          className={styles.url}
+          target={"_blank"}
+          rel="noreferrer"
+        >
+          레시피 링크 바로가기
+        </a>
+      )}
     </div>
   );
 };
