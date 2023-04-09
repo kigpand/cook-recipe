@@ -9,6 +9,8 @@ const Login = () => {
   const pw = useInput("");
 
   const onLogin = () => {
+    if (id.value === "") return alert("아이디를 입력해주세요");
+    if (pw.value === "") return alert("비밀번호를 입력해주세요");
     loginUser({ id: id.value });
     unLogin();
   };
