@@ -59,7 +59,7 @@ const Header = () => {
           onChange={search.onChange}
         ></input>
         <img
-          src="/imgs/reload.png"
+          src={`${process.env.PUBLIC_URL}/imgs/reload.png`}
           alt="새로고침"
           className={styles.reload}
           onClick={onReload}

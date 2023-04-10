@@ -28,12 +28,18 @@ const Lists = () => {
       <div className={styles.main}>
         {recipes.length === saveRecipes.length ? (
           <div className={styles.normal}>
-            <img src="/imgs/recipe1.jpg" alt="img"></img>
+            <img
+              src={`${process.env.PUBLIC_URL}/imgs/recipe1.jpg`}
+              alt="img"
+            ></img>
             <div>여러분의 레시피를 등록해보세요!</div>
           </div>
         ) : (
           <div className={styles.normal}>
-            <img src="/imgs/recipe2.jpg" alt="img"></img>
+            <img
+              src={`${process.env.PUBLIC_URL}/imgs/recipe2.jpg`}
+              alt="img"
+            ></img>
             <div>모두에게 자신의 레시피를 공유해보세요!</div>
           </div>
         )}
