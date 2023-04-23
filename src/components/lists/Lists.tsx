@@ -7,10 +7,6 @@ import useRecipe from "../../store/recipe";
 const Lists = () => {
   const { currentRecipe, recipes, saveRecipes, setCurrentRecipe } = useRecipe();
 
-  function onView(recipe: IRecipe) {
-    setCurrentRecipe(recipe);
-  }
-
   function unView() {
     if (currentRecipe) {
       const listView = document.getElementById("listView");
@@ -45,7 +41,7 @@ const Lists = () => {
         )}
       </div>
       {recipes.map((item: IRecipe, i: number) => {
-        return <ListItem key={i} item={item} onView={onView} />;
+        return <ListItem key={i} item={item} />;
       })}
       {currentRecipe && <ListView />}
     </div>
