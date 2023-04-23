@@ -3,9 +3,14 @@ import ListView from "../listView/ListView";
 import styles from "./Lists.module.scss";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
+import { useCallback } from "react";
 
 const Lists = () => {
   const { currentRecipe, recipes, saveRecipes, setCurrentRecipe } = useRecipe();
+
+  const onView = useCallback((recipe: IRecipe) => {
+    setCurrentRecipe(recipe);
+  }, []);
 
   function unView() {
     if (currentRecipe) {
@@ -41,7 +46,7 @@ const Lists = () => {
         )}
       </div>
       {recipes.map((item: IRecipe, i: number) => {
-        return <ListItem key={i} item={item} />;
+        return <ListItem key={i} item={item} onView={onView} />;
       })}
       {currentRecipe && <ListView />}
     </div>
