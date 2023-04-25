@@ -58,12 +58,14 @@ const Header = () => {
           value={search.value}
           onChange={search.onChange}
         ></input>
-        <img
-          src={`${process.env.PUBLIC_URL}/imgs/reload.png`}
-          alt="새로고침"
-          className={styles.reload}
-          onClick={onReload}
-        ></img>
+        {recipes.length !== saveRecipes.length && (
+          <img
+            src={`${process.env.PUBLIC_URL}/imgs/reload.png`}
+            alt="새로고침"
+            className={styles.reload}
+            onClick={onReload}
+          ></img>
+        )}
       </div>
       <div className={styles.btns}>
         {user && (
@@ -90,4 +92,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
