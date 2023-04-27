@@ -1,5 +1,6 @@
 import { useInput } from "../../hook/userInput";
 import useUser from "../../store/user";
+import Button from "../common/btn/Button";
 import Input from "../common/input/Input";
 import styles from "./Login.module.scss";
 
@@ -28,12 +29,21 @@ const Login = () => {
         <Input width="80%" placeholder="아이디" onChange={id.onChange} />
         <Input width="80%" placeholder="비밀번호" onChange={pw.onChange} />
         <div className={styles.btns}>
-          <button className={styles.loginBtn} onClick={onLogin}>
-            로그인
-          </button>
-          <button className={styles.join} onClick={onJoin}>
-            회원가입
-          </button>
+          <Button
+            text="로그인"
+            width="80%"
+            height="35px"
+            onClick={onLogin}
+            backgroundColor="rgb(66, 66, 66)"
+          />
+          <Button
+            text="회원가입"
+            width="80%"
+            height="35px"
+            onClick={onJoin}
+            marginTop="5px"
+            backgroundColor="rgb(74, 74, 215)"
+          />
         </div>
       </div>
     </div>

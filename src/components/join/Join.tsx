@@ -3,6 +3,7 @@ import { useInput } from "../../hook/userInput";
 import useUser from "../../store/user";
 import JoinInput from "../common/joinInput/JoinInput";
 import styles from "./Join.module.scss";
+import Button from "../common/btn/Button";
 
 const Join = () => {
   const id = useInput("");
@@ -58,12 +59,21 @@ const Join = () => {
         <JoinInput title="비밀번호 체크" input={pwCheck} isPassword={true} />
         <JoinInput title="email" input={email} isPassword={false} />
         <div className={styles.btns}>
-          <button className={styles.cancleBtn} onClick={() => setJoin(false)}>
-            취소
-          </button>
-          <button className={styles.addBtn} onClick={onSubmit}>
-            등록
-          </button>
+          <Button
+            text="취소"
+            width="50px"
+            height="30px"
+            onClick={() => setJoin(false)}
+            backgroundColor="gray"
+          />
+          <Button
+            text="등록"
+            width="50px"
+            height="30px"
+            backgroundColor="rgb(74, 74, 215)"
+            marginLeft="5px"
+            onClick={onSubmit}
+          />
         </div>
       </div>
     </div>

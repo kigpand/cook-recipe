@@ -1,0 +1,11 @@
+@import "../../../styles/common.scss";
+
+.btn {
+  @include flexSort;
+  font-size: 14px;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
