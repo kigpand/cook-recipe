@@ -60,17 +60,17 @@ const Join = () => {
         <JoinInput title="email" input={email} isPassword={false} />
         <div className={styles.btns}>
           <Button
+            type="cancle"
             text="취소"
             width="50px"
             height="30px"
             onClick={() => setJoin(false)}
-            backgroundColor="gray"
           />
           <Button
+            type="add"
             text="등록"
             width="50px"
             height="30px"
-            backgroundColor="rgb(74, 74, 215)"
             marginLeft="5px"
             onClick={onSubmit}
           />
