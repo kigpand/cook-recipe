@@ -1,6 +1,6 @@
 import { useInput } from "../../hook/userInput";
 import useUser from "../../store/user";
-import Button from "../common/btn/Button";
+import Button from "../common/atoms/btn/Button";
 import Input from "../common/input/Input";
 import styles from "./Login.module.scss";
 
@@ -32,17 +32,14 @@ const Login = () => {
           <Button
             type="add"
             text="로그인"
-            width="80%"
-            height="35px"
+            style={{ width: "80%", height: "35px" }}
             onClick={onLogin}
           />
           <Button
             type="cancle"
             text="회원가입"
-            width="80%"
-            height="35px"
             onClick={onJoin}
-            marginTop="5px"
+            style={{ width: "80%", height: "35px", marginTop: "5px" }}
           />
         </div>
       </div>

@@ -3,7 +3,7 @@ import { useInput } from "../../hook/userInput";
 import useUser from "../../store/user";
 import JoinInput from "../common/joinInput/JoinInput";
 import styles from "./Join.module.scss";
-import Button from "../common/btn/Button";
+import Button from "../common/atoms/btn/Button";
 
 const Join = () => {
   const id = useInput("");
@@ -62,16 +62,13 @@ const Join = () => {
           <Button
             type="cancle"
             text="취소"
-            width="50px"
-            height="30px"
             onClick={() => setJoin(false)}
+            style={{ width: "50px", height: "30px" }}
           />
           <Button
             type="add"
             text="등록"
-            width="50px"
-            height="30px"
-            marginLeft="5px"
+            style={{ width: "50px", height: "30px", marginLeft: "5px" }}
             onClick={onSubmit}
           />
         </div>
