@@ -1,7 +1,7 @@
 import { useInput } from "../../hook/userInput";
 import useUser from "../../store/user";
-import Button from "../common/atoms/btn/Button";
-import Input from "../common/input/Input";
+import Button from "../atoms/btn/Button";
+import Input from "../atoms/input/Input";
 import styles from "./Login.module.scss";
 
 const Login = () => {
@@ -26,8 +26,18 @@ const Login = () => {
       <div className={styles.back} onClick={unLogin}></div>
       <div className={styles.container}>
         <div className={styles.header}>로그인</div>
-        <Input width="80%" placeholder="아이디" onChange={id.onChange} />
-        <Input width="80%" placeholder="비밀번호" onChange={pw.onChange} />
+        <Input
+          isPassword={false}
+          style={{ width: "80%" }}
+          placeholder="아이디"
+          onChange={id.onChange}
+        />
+        <Input
+          isPassword={true}
+          style={{ width: "80%", marginTop: "10px" }}
+          placeholder="비밀번호"
+          onChange={pw.onChange}
+        />
         <div className={styles.btns}>
           <Button
             type="add"

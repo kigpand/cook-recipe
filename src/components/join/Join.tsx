@@ -3,7 +3,7 @@ import { useInput } from "../../hook/userInput";
 import useUser from "../../store/user";
 import JoinInput from "../common/joinInput/JoinInput";
 import styles from "./Join.module.scss";
-import Button from "../common/atoms/btn/Button";
+import Button from "../atoms/btn/Button";
 
 const Join = () => {
   const id = useInput("");

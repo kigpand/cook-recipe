@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./JoinInput.module.scss";
+import Input from "../../atoms/input/Input";
 
 interface IJoinInput {
   title: string;
@@ -12,11 +13,10 @@ const JoinInput = ({ title, input, isPassword, onCheck }: IJoinInput) => {
   return (
     <div className={styles.joinInput}>
       <div className={styles.text}>{title}</div>
-      <input
-        type={isPassword ? "password" : "text"}
+      <Input
         className={styles.input}
-        value={input.value}
         onChange={input.onChange}
+        isPassword={isPassword}
       />
       {title === "아이디" && (
         <div className={styles.idCheck} onClick={onCheck}>
