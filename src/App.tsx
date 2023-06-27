@@ -1,4 +1,3 @@
-import styles from "./App.module.scss";
 import AddRecipe from "./components/add/AddRecipe";
 import Header from "./components/header/Header";
 import MobileHeader from "./components/header/mobile/MobileHeader";
@@ -24,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className={styles.App}>
+    <div className="w-full flex flex-col items-center justify-center">
       {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
       {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
       {isLogin && <Login />}

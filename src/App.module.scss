@@ -1,8 +1,0 @@
-@import "./styles/color.scss";
-@import "./styles/common.scss";
-
-.App {
-  width: 100vw;
-  @include flexSort;
-  flex-direction: column;
-}
