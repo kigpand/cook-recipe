@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "./ToggleHeader.module.scss";
-import useUser from "../../../../store/user";
-import useRecipe from "../../../../store/recipe";
-import MobileSearch from "../../../mobileSearch/MobileSearch";
-import { IRecipe } from "../../../../interface/IRecipe";
+import useUser from "../../store/user";
+import useRecipe from "../../store/recipe";
+import MobileSearch from "../mobileSearch/MobileSearch";
+import { IRecipe } from "../../interface/IRecipe";
 
-interface IToggleHeader {
+interface IHeaderToggle {
   onCloseToggle: () => void;
 }
 
-const ToggleHeader = ({ onCloseToggle }: IToggleHeader) => {
+const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   const ref = useRef<HTMLDivElement>(null);
   const { user, logOutUser, onLogin } = useUser();
   const { setOnAdd, setRecipes, saveRecipes } = useRecipe();
@@ -56,32 +55,32 @@ const ToggleHeader = ({ onCloseToggle }: IToggleHeader) => {
   };
 
   return (
-    <div className={styles.toggleHeader} ref={ref}>
-      <div className={styles.list} onClick={() => setSearch(true)}>
+    <div className=" absolute -top-64 left-0 w-full duration-75" ref={ref}>
+      <div className="header-toggle-list" onClick={() => setSearch(true)}>
         검색
       </div>
       {user && (
-        <div className={styles.list} onClick={onMyRecipe}>
+        <div className="header-toggle-list" onClick={onMyRecipe}>
           내 레시피
         </div>
       )}
       {user && (
-        <div className={styles.list} onClick={onAddRecipe}>
+        <div className="header-toggle-list" onClick={onAddRecipe}>
           레시피 등록
         </div>
       )}
       {user ? (
-        <div className={styles.list} onClick={logoutUser}>
+        <div className="header-toggle-list" onClick={logoutUser}>
           로그아웃
         </div>
       ) : (
-        <div className={styles.list} onClick={loginUser}>
+        <div className="header-toggle-list" onClick={loginUser}>
           로그인
         </div>
       )}
       <img
         src={`${process.env.PUBLIC_URL}/imgs/close.png`}
-        className={styles.close}
+        className="bg-slate-200 w-4 h-4 p-1 absolute right-0 border border-solid border-l-slate-200 border-b-slate-200"
         onClick={onClose}
       ></img>
       {search && (
@@ -94,4 +93,4 @@ const ToggleHeader = ({ onCloseToggle }: IToggleHeader) => {
   );
 };
 
-export default ToggleHeader;
+export default HeaderToggle;

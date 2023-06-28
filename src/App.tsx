@@ -1,6 +1,6 @@
 import AddRecipe from "./components/add/AddRecipe";
 import Header from "./components/header/Header";
-import MobileHeader from "./components/header/mobile/MobileHeader";
+import MobileHeader from "./components/header/MobileHeader";
 import Join from "./components/join/Join";
 import Lists from "./components/lists/Lists";
 import MobileLists from "./components/lists/mobile/MobileLists";

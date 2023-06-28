@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 import useUser from "../../store/user";
-import styles from "./Header.module.scss";
 import { useInput } from "../../hook/userInput";
 
 const Header = () => {
@@ -48,11 +47,11 @@ const Header = () => {
   };
 
   return (
-    <div className={styles.header}>
-      <div className={styles.search}>
+    <div className=" w-full h-14 shadow flex items-center justify-center bg-white text-sm font-bold">
+      <div className=" flex items-center">
         <input
           type="text"
-          className={styles.input}
+          className="w-52 h-7 outline-none border border-solid border-slate-200 hover:text-gray-200 rounded-md"
           placeholder="search"
           onKeyPress={onSearch}
           value={search.value}
@@ -62,28 +61,28 @@ const Header = () => {
           <img
             src={`${process.env.PUBLIC_URL}/imgs/reload.png`}
             alt="새로고침"
-            className={styles.reload}
+            className="ml-3 w-5 h-5 p-0.5 border border-solid border-slate-200 cursor-pointer"
             onClick={onReload}
           ></img>
         )}
       </div>
-      <div className={styles.btns}>
+      <div className="absolute right-10 flex">
         {user && (
-          <div className={styles.add} onClick={onMyRecipe}>
+          <div className="header-button mr-7" onClick={onMyRecipe}>
             {isMy ? "전체 레시피" : "내 레시피"}
           </div>
         )}
         {user && (
-          <div className={styles.add} onClick={() => setOnAdd(true)}>
+          <div className="header-button mr-7" onClick={() => setOnAdd(true)}>
             게시글 등록
           </div>
         )}
         {user ? (
-          <div className={styles.login} onClick={onLogout}>
+          <div className="header-button" onClick={onLogout}>
             Logout
           </div>
         ) : (
-          <div className={styles.login} onClick={onLogin}>
+          <div className="header-button" onClick={onLogin}>
             Login
           </div>
         )}
