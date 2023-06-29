@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useUser from "../../store/user";
 import useRecipe from "../../store/recipe";
 import MobileSearch from "../mobileSearch/MobileSearch";
@@ -16,7 +16,7 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.style.top = "0";
+      ref.current.style.top = "0px";
     }
   }, []);
 
@@ -55,7 +55,7 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   };
 
   return (
-    <div className=" absolute -top-64 left-0 w-full duration-75" ref={ref}>
+    <div className="absolute -top-64 left-0 w-full duration-100" ref={ref}>
       <div className="header-toggle-list" onClick={() => setSearch(true)}>
         검색
       </div>
