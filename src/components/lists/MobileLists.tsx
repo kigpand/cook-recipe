@@ -1,8 +1,7 @@
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
-import MobileListItem from "../listItem/mobile/MobileListItem";
+import MobileListItem from "../listItem/MobileListItem";
 import ListView from "../listView/ListView";
-import styles from "./MobileLists.module.scss";
 
 const MobileLists = () => {
   const { recipes, currentRecipe } = useRecipe();

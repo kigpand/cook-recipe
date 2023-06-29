@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { IRecipe } from "../../interface/IRecipe";
-import styles from "./ListItem.module.scss";
 
 interface IListItem {
   item: IRecipe;
@@ -12,17 +11,21 @@ const ListItem = ({ item, onView }: IListItem) => {
 
   return (
     <div
-      className={styles.listItem}
+      className="text-sm text-white duration-75 relative"
       onClick={() => onView(item)}
       onMouseOver={() => setBack(true)}
       onMouseLeave={() => setBack(false)}
     >
       <img
         src={item.imgUrl[0] || "imgs/noimg.png"}
-        className={styles.img}
+        className="w-full h-full"
         alt="view"
       />
-      {back && <div className={styles.back}>{item.name}</div>}
+      {back && (
+        <div className="font-bold absolute top-0 left-0 w-full h-full z-10 text-white flex items-center justify-center bg-black4">
+          {item.name}
+        </div>
+      )}
     </div>
   );
 };
