@@ -1,10 +1,10 @@
 import AddRecipe from "./components/add/AddRecipe";
 import Header from "./components/header/Header";
 import MobileHeader from "./components/header/MobileHeader";
-import Join from "./components/join/Join";
+import Join from "./components/Join";
 import Lists from "./components/lists/Lists";
 import MobileLists from "./components/lists/MobileLists";
-import Login from "./components/login/Login";
+import Login from "./components/Login";
 import { useWindowSize } from "./hook/useWindowSize";
 import useRecipe from "./store/recipe";
 import useUser from "./store/user";

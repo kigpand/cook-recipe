@@ -1,8 +1,7 @@
-import { useInput } from "../../hook/userInput";
-import useUser from "../../store/user";
-import Button from "../atoms/btn/Button";
-import Input from "../atoms/input/Input";
-import styles from "./Login.module.scss";
+import { useInput } from "../hook/userInput";
+import useUser from "../store/user";
+import Button from "./atoms/btn/Button";
+import Input from "./atoms/input/Input";
 
 const Login = () => {
   const { loginUser, unLogin, setJoin } = useUser();
@@ -22,10 +21,10 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.login}>
-      <div className={styles.back} onClick={unLogin}></div>
-      <div className={styles.container}>
-        <div className={styles.header}>로그인</div>
+    <div className="modal">
+      <div className="modal-back" onClick={unLogin}></div>
+      <div className="modal-container">
+        <div className="modal-header">로그인</div>
         <Input
           isPassword={false}
           style={{ width: "80%" }}
@@ -38,7 +37,7 @@ const Login = () => {
           placeholder="비밀번호"
           onChange={pw.onChange}
         />
-        <div className={styles.btns}>
+        <div className="absolute bottom-3 w-full flex flex-col items-center">
           <Button
             type="add"
             text="로그인"

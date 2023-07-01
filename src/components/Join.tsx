@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useInput } from "../../hook/userInput";
-import useUser from "../../store/user";
-import JoinInput from "../common/joinInput/JoinInput";
-import styles from "./Join.module.scss";
-import Button from "../atoms/btn/Button";
+import { useInput } from "../hook/userInput";
+import useUser from "../store/user";
+import JoinInput from "./common/joinInput/JoinInput";
+import Button from "./atoms/btn/Button";
 
 const Join = () => {
   const id = useInput("");
@@ -45,10 +44,10 @@ const Join = () => {
   };
 
   return (
-    <div className={styles.join}>
-      <div className={styles.back} onClick={() => setJoin(false)}></div>
-      <div className={styles.container}>
-        <div className={styles.header}>회원가입</div>
+    <div className="modal">
+      <div className="modal-back" onClick={() => setJoin(false)}></div>
+      <div className="modal-container">
+        <div className="modal-header">회원가입</div>
         <JoinInput
           title="아이디"
           input={id}
@@ -58,7 +57,7 @@ const Join = () => {
         <JoinInput title="비밀번호" input={pw} isPassword={true} />
         <JoinInput title="비밀번호 체크" input={pwCheck} isPassword={true} />
         <JoinInput title="email" input={email} isPassword={false} />
-        <div className={styles.btns}>
+        <div className="pt-5 pr-5 pb-2 pl-5 flex items-center justify-center">
           <Button
             type="cancle"
             text="취소"

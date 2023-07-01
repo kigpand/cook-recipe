@@ -1,5 +1,5 @@
 import ListItem from "../listItem/ListItem";
-import ListView from "../listView/ListView";
+import ListView from "../ListView";
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 import { useCallback } from "react";
