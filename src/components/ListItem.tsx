@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IRecipe } from "../../interface/IRecipe";
+import { IRecipe } from "../interface/IRecipe";
 
 interface IListItem {
   item: IRecipe;

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import useUser from "../../store/user";
-import useRecipe from "../../store/recipe";
-import MobileSearch from "../mobileSearch/MobileSearch";
-import { IRecipe } from "../../interface/IRecipe";
+import useUser from "../store/user";
+import useRecipe from "../store/recipe";
+import MobileSearch from "./mobileSearch/MobileSearch";
+import { IRecipe } from "../interface/IRecipe";
 
 interface IHeaderToggle {
   onCloseToggle: () => void;

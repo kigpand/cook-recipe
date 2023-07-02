@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import useRecipe from "../../store/recipe";
-import HeaderToggle from "./HeaderToggle";
+import HeaderToggle from "../HeaderToggle";
 
 const MobileHeader = () => {
   const [toggle, setToggle] = useState<boolean>(false);

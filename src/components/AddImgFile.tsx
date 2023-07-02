@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-import ImgView from "../imgView/ImgView";
-import styles from "./AddImgFile.module.scss";
+import ImgView from "./AddImgView";
 
 interface IAddImgFile {
   addImg: (data: string[]) => void;
@@ -49,18 +48,18 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
   };
 
   return (
-    <div className={styles.addImgFile}>
-      <div className={styles.header}>이미지 등록</div>
-      <div className={styles.body}>
+    <div className="flex flex-col border border-solid border-b-gray-400 py-4 px-2 items-center">
+      <div className="w-full mb-5 font-bold">이미지 등록</div>
+      <div className="w-full relative flex items-center">
         {loading && (
-          <div className={styles.loadingContainer}>
-            <div className={styles.loading}></div>
+          <div className="w-full h-full z-50 absolute top-0 left-0 flex-center">
+            <div className="w-6 h-6 rounded-full border-2 border-solid border-gray-300 border-t-gray-700 animate-spin"></div>
           </div>
         )}
         <img
           src="imgs/camera.png"
           alt="camera"
-          className={styles.camera}
+          className="h-6 object-contain border border-solid border-gray-400 p-1 hover:cursor-pointer hover:bg-gray-300"
           onClick={onChangeEvent}
         ></img>
         <input
@@ -70,7 +69,7 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
           onChange={onFileChange}
           hidden
         ></input>
-        <div className={styles.arr}>
+        <div className="flex ml-7">
           {fileArr.length > 0 &&
             fileArr.map((item: string, i: number) => {
               return (
@@ -78,7 +77,7 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
                   src={item}
                   alt={item}
                   key={i}
-                  className={styles.img}
+                  className="mr-3 w-7 h-7 cursor-pointer"
                   onClick={() => onView(item)}
                 />
               );

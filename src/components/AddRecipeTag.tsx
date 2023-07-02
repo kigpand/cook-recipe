@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
-import { useInput } from "../../../hook/userInput";
-import AddLayout from "../../common/addLayout/AddLayout";
-import styles from "./AddRecipeTag.module.scss";
+import { useInput } from "../hook/userInput";
+import AddLayout from "./common/addLayout/AddLayout";
 
 interface IAddRecipeTag {
   tags: string[];
@@ -26,14 +25,14 @@ const AddRecipeTag = ({ tags, onAddTag, removeTag }: IAddRecipeTag) => {
   };
 
   return (
-    <div className={styles.addRecipeTag}>
-      <div className={styles.body}>
+    <div className="py-4 px-2 border border-solid border-b-slate-400">
+      <div className="flex items-center">
         <AddLayout title="태그 등록" input={input} onAdd={onAdd} />
-        <div className={styles.container} ref={containerRef}>
+        <div className="ml-3" ref={containerRef}>
           {tags.map((item: string, i: number) => {
             return (
               <div
-                className={styles.child}
+                className="mt-1 text-xs font-medium text-blue-600 hover:cursor-pointer hover:underline"
                 onClick={() => onRemove(item)}
                 key={i}
               >

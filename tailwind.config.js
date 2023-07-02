@@ -3,11 +3,21 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx,tsx,ts}"],
   theme: {
     extend: {
+      width: {
+        imgWidth: "500px",
+      },
+      height: {
+        imgHeight: "400px",
+      },
       backgroundColor: {
         black4: "rgba(0, 0, 0, 0.4)",
+        shadowBlue: "rgb(74, 74, 215)",
       },
       fontFamily: {
         TheJamsil5Bold: "TheJamsil5Bold",
+      },
+      maxHeight: {
+        max70: "70vh",
       },
       gridAutoRows: {
         gird150: "150px",

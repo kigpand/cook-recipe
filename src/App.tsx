@@ -1,9 +1,9 @@
-import AddRecipe from "./components/add/AddRecipe";
-import Header from "./components/header/Header";
-import MobileHeader from "./components/header/MobileHeader";
+import AddRecipe from "./components/AddRecipe";
+import Header from "./components/Header";
+import MobileHeader from "./components/mobile/MobileHeader";
 import Join from "./components/Join";
-import Lists from "./components/lists/Lists";
-import MobileLists from "./components/lists/MobileLists";
+import Lists from "./components/Lists";
+import MobileLists from "./components/mobile/MobileLists";
 import Login from "./components/Login";
 import { useWindowSize } from "./hook/useWindowSize";
 import useRecipe from "./store/recipe";

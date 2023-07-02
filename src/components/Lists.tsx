@@ -1,7 +1,7 @@
-import ListItem from "../listItem/ListItem";
-import ListView from "../ListView";
-import { IRecipe } from "../../interface/IRecipe";
-import useRecipe from "../../store/recipe";
+import ListItem from "./ListItem";
+import ListView from "./ListView";
+import { IRecipe } from "../interface/IRecipe";
+import useRecipe from "../store/recipe";
 import { useCallback } from "react";
 
 const Lists = () => {

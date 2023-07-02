@@ -27,6 +27,14 @@
   @apply w-full h-full absolute top-0 left-0 cursor-pointer;
 }
 
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.add-button {
+  @apply border-none outline-none py-1 px-2 text-base rounded cursor-pointer text-white;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

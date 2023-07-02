@@ -1,7 +1,6 @@
 import React from "react";
-import { useInput } from "../../../hook/userInput";
-import AddLayout from "../../common/addLayout/AddLayout";
-import styles from "./AddRecipeMaterial.module.scss";
+import { useInput } from "../hook/userInput";
+import AddLayout from "./common/addLayout/AddLayout";
 
 interface IAddRecipeMaterial {
   materials: string[];
@@ -27,14 +26,19 @@ const AddRecipeMaterial = ({
   };
 
   return (
-    <div className={styles.addRecipeMaterial}>
+    <div className="py-4 px-2 border border-solid border-b-gray-400">
       <AddLayout title="재료 등록" input={input} onAdd={onAdd} />
-      <div className={styles.materials}>
+      <div className="mt-3 grid grid-cols-repeat-2fr text-sm gap-y-1">
         {materials.map((item: string, i: number) => {
           return (
-            <div className={styles.item} key={i}>
-              <div className={styles.text}>{item}</div>
-              <div className={styles.close} onClick={() => onRemove(item)}>
+            <div className="relative flex items-center" key={i}>
+              <div className="w-36 overflow-hidden whitespace-nowrap text-ellipsis">
+                {item}
+              </div>
+              <div
+                className="text-xs absolute right-3 cursor-pointer"
+                onClick={() => onRemove(item)}
+              >
                 x
               </div>
             </div>
