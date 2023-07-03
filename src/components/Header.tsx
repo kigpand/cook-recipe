@@ -7,7 +7,7 @@ import { login, logout } from "../api/firebase";
 
 const Header = () => {
   const search = useInput("");
-  const { user, logOutUser, loginUser } = useUser();
+  const { user, setUser } = useUser();
   const { setOnAdd, setRecipes, recipes, saveRecipes } = useRecipe();
   const [isMy, setIsMy] = useState<boolean>(false);
 
@@ -36,12 +36,12 @@ const Header = () => {
   };
 
   const onLogin = () => {
-    login((data: any) => loginUser(data));
+    login((data: any) => setUser(data));
   };
 
   const onLogout = () => {
     setRecipes(saveRecipes);
-    logOutUser();
+    setUser(null);
     logout();
   };
 

@@ -9,11 +9,13 @@ import useUser from "./store/user";
 import { MOBILE_SIZE } from "./util/common";
 import recipeJSON from "./data/recipe.json";
 import { useEffect } from "react";
+import { getUser } from "./api/firebase";
 
 function App() {
   const windowSize = useWindowSize();
   const { setRecipes, setSaveRecipes, onAdd, currentRecipe, setCurrentRecipe } =
     useRecipe();
+  const { setUser } = useUser();
 
   function unView() {
     if (currentRecipe) {
@@ -30,6 +32,9 @@ function App() {
   useEffect(() => {
     setRecipes(recipeJSON);
     setSaveRecipes(recipeJSON);
+    getUser((state: any) => {
+      setUser(state);
+    });
   }, []);
 
   return (

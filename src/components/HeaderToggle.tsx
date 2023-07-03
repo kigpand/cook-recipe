@@ -11,7 +11,7 @@ interface IHeaderToggle {
 
 const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { user, logOutUser, loginUser } = useUser();
+  const { user, setUser } = useUser();
   const { setOnAdd, setRecipes, saveRecipes } = useRecipe();
   const [search, setSearch] = useState<boolean>(false);
 
@@ -29,12 +29,12 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   };
 
   const onLogin = () => {
-    login((data: any) => loginUser(data));
+    login((data: any) => setUser(data));
   };
 
   const onLogout = () => {
     setRecipes(saveRecipes);
-    logOutUser();
+    setUser(null);
     logout();
   };
 
