@@ -42,11 +42,11 @@ const ListView = () => {
       <img
         src={currentRecipe!.imgUrl[0] || "imgs/noimg.png"}
         alt="img"
-        className="w-96 h-72 mb-3 text-center"
+        className="w-96 h-72 mb-3 text-center max-md:w-full"
         onClick={onImgView}
       />
       <Tags />
-      <div className="w-96 mt-3 text-red-500 underline">
+      <div className="w-96 mt-3 text-red-500 underline max-md:w-full">
         {currentRecipe?.content}
       </div>
       <div className="mt-5 flex">
@@ -61,7 +61,7 @@ const ListView = () => {
           })}
         </div>
       </div>
-      <div className="mt-5 pb-2 w-96">
+      <div className="mt-5 pb-2 w-96 max-md:w-full">
         <div className="font-bold mb-2">조리 방법</div>
         <div className="flex flex-col">
           {currentRecipe!.recipe.map((item: string, i: number) => {

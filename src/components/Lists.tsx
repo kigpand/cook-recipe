@@ -11,23 +11,8 @@ const Lists = () => {
     setCurrentRecipe(recipe);
   }, []);
 
-  function unView() {
-    if (currentRecipe) {
-      const listView = document.getElementById("listView");
-      if (listView) {
-        listView.style.animation = "closeMotion 0.2s forwards";
-        listView.addEventListener("animationend", () => {
-          setCurrentRecipe(null);
-        });
-      }
-    }
-  }
-
   return (
-    <div
-      className="w-2/3 h-4/5 pt-12 grid justify-center grid-cols-5 auto-rows-gird150 gap-2.5"
-      onClick={unView}
-    >
+    <div className="w-2/3 h-4/5 pt-12 grid justify-center grid-cols-5 auto-rows-gird150 gap-2.5">
       <div className="row-start-1 row-end-4 col-start-1 col-end-3 text-white shadow">
         {recipes.length === saveRecipes.length ? (
           <div className="relative w-full h-full">

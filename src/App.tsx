@@ -15,7 +15,20 @@ import { useEffect } from "react";
 function App() {
   const windowSize = useWindowSize();
   const { isLogin, isJoin } = useUser();
-  const { setRecipes, setSaveRecipes, onAdd } = useRecipe();
+  const { setRecipes, setSaveRecipes, onAdd, currentRecipe, setCurrentRecipe } =
+    useRecipe();
+
+  function unView() {
+    if (currentRecipe) {
+      const listView = document.getElementById("listView");
+      if (listView) {
+        listView.style.animation = "closeMotion 0.2s forwards";
+        listView.addEventListener("animationend", () => {
+          setCurrentRecipe(null);
+        });
+      }
+    }
+  }
 
   useEffect(() => {
     setRecipes(recipeJSON);
@@ -23,7 +36,10 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div
+      className="w-full h-screen flex flex-col items-center"
+      onClick={unView}
+    >
       {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
       {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
       {isLogin && <Login />}
