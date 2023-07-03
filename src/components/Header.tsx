@@ -3,10 +3,11 @@ import { IRecipe } from "../interface/IRecipe";
 import useRecipe from "../store/recipe";
 import useUser from "../store/user";
 import { useInput } from "../hook/userInput";
+import { login, logout } from "../api/firebase";
 
 const Header = () => {
   const search = useInput("");
-  const { user, logOutUser, onLogin } = useUser();
+  const { user, logOutUser, loginUser } = useUser();
   const { setOnAdd, setRecipes, recipes, saveRecipes } = useRecipe();
   const [isMy, setIsMy] = useState<boolean>(false);
 
@@ -34,9 +35,14 @@ const Header = () => {
     }
   };
 
+  const onLogin = () => {
+    login((data: any) => loginUser(data));
+  };
+
   const onLogout = () => {
     setRecipes(saveRecipes);
     logOutUser();
+    logout();
   };
 
   const onReload = () => {

@@ -3,6 +3,7 @@ import useUser from "../store/user";
 import useRecipe from "../store/recipe";
 import MobileSearch from "./mobile/MobileSearch";
 import { IRecipe } from "../interface/IRecipe";
+import { login, logout } from "../api/firebase";
 
 interface IHeaderToggle {
   onCloseToggle: () => void;
@@ -10,7 +11,7 @@ interface IHeaderToggle {
 
 const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { user, logOutUser, onLogin } = useUser();
+  const { user, logOutUser, loginUser } = useUser();
   const { setOnAdd, setRecipes, saveRecipes } = useRecipe();
   const [search, setSearch] = useState<boolean>(false);
 
@@ -27,15 +28,14 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
     }
   };
 
-  const loginUser = () => {
-    onCloseToggle();
-    onLogin();
+  const onLogin = () => {
+    login((data: any) => loginUser(data));
   };
 
-  const logoutUser = () => {
+  const onLogout = () => {
     setRecipes(saveRecipes);
-    onCloseToggle();
     logOutUser();
+    logout();
   };
 
   const onAddRecipe = () => {
@@ -70,17 +70,18 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
         </div>
       )}
       {user ? (
-        <div className="header-toggle-list" onClick={logoutUser}>
+        <div className="header-toggle-list" onClick={onLogout}>
           로그아웃
         </div>
       ) : (
-        <div className="header-toggle-list" onClick={loginUser}>
+        <div className="header-toggle-list" onClick={onLogin}>
           로그인
         </div>
       )}
       <img
         src={`${process.env.PUBLIC_URL}/imgs/close.png`}
         className="bg-slate-200 w-4 h-4 p-1 absolute right-0 border border-solid border-l-slate-200 border-b-slate-200"
+        alt="img"
         onClick={onClose}
       ></img>
       {search && (
