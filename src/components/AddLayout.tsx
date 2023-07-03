@@ -1,6 +1,3 @@
-import React from "react";
-import styles from "./AddLayout.module.scss";
-
 interface IAddLayout {
   title: string;
   input: any;
@@ -9,16 +6,16 @@ interface IAddLayout {
 
 const AddLayout = ({ title, input, onAdd }: IAddLayout) => {
   return (
-    <div className={styles.addLayout}>
-      <div className={styles.title}>{title}</div>
-      <div className={styles.body}>
+    <div>
+      <div className="font-bold mb-2">{title}</div>
+      <div>
         <input
           type="text"
-          className={styles.input}
+          className="recipe-input"
           value={input.value}
           onChange={input.onChange}
         />
-        <button className={styles.addBtn} onClick={onAdd}>
+        <button className="add-button bg-shadowBlue ml-1" onClick={onAdd}>
           등록
         </button>
       </div>

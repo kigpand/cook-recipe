@@ -1,6 +1,6 @@
 import React from "react";
 import Slider, { Settings } from "react-slick";
-import styles from "./ImgSlider.module.scss";
+import styled from "styled-components";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,19 +18,43 @@ interface IImgSlider {
   onClearItem: () => void;
 }
 
+const SliderComponent = styled(Slider)`
+  position: relative;
+  width: 600px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 600px;
+    height: 450px;
+  }
+
+  @media (max-width: 767px) {
+    width: 80%;
+    height: 300px;
+
+    img {
+      width: 400px;
+      height: 300px;
+    }
+  }
+`;
+
 const ImgSlider = ({ imgs, onClearItem }: IImgSlider) => {
   const onClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
   return (
-    <div className={styles.imgSlider} onClick={onClick}>
-      <div className={styles.back} onClick={onClearItem}></div>
-      <Slider {...setting} className={styles.slider}>
+    <div className="modal" onClick={onClick}>
+      <div className="modal-back" onClick={onClearItem}></div>
+      <SliderComponent {...setting}>
         {imgs.map((item: string, i: number) => {
           return <img src={item} key={i} alt={item}></img>;
         })}
-      </Slider>
+      </SliderComponent>
     </div>
   );
 };

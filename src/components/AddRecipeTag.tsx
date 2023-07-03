@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useInput } from "../hook/userInput";
-import AddLayout from "./common/addLayout/AddLayout";
+import AddLayout from "./AddLayout";
 
 interface IAddRecipeTag {
   tags: string[];

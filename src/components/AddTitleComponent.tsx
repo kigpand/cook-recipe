@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./AddTitleComponent.module.scss";
 
 interface IAddTitleComponent {
   title: string;
@@ -8,11 +7,11 @@ interface IAddTitleComponent {
 
 const AddTitleComponent = ({ title, input }: IAddTitleComponent) => {
   return (
-    <div className={styles.addTitleComponent}>
-      <div className={styles.text}>{title}</div>
+    <div className="flex items-center py-4 px-2 border border-solid border-b-gray-400">
+      <div className="w-2/6 mr-2 font-bold">{title}</div>
       <input
         type="text"
-        className={styles.input}
+        className="recipe-input"
         value={input.value}
         onChange={input.onChange}
       />

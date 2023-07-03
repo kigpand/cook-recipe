@@ -1,6 +1,5 @@
 import React from "react";
-import styles from "./JoinInput.module.scss";
-import Input from "../../atoms/input/Input";
+import Input from "./atoms/input/Input";
 
 interface IJoinInput {
   title: string;
@@ -11,15 +10,18 @@ interface IJoinInput {
 
 const JoinInput = ({ title, input, isPassword, onCheck }: IJoinInput) => {
   return (
-    <div className={styles.joinInput}>
-      <div className={styles.text}>{title}</div>
+    <div className="flex items-center py-4 px-2">
+      <div className="w-1/5 mr-2 font-bold">{title}</div>
       <Input
-        className={styles.input}
+        className="recipe-input"
         onChange={input.onChange}
         isPassword={isPassword}
       />
       {title === "아이디" && (
-        <div className={styles.idCheck} onClick={onCheck}>
+        <div
+          className="ml-1 rounded bg-shadowBlue text-white text-xs p-1 cursor-pointer hover:bg-blue-400"
+          onClick={onCheck}
+        >
           중복체크
         </div>
       )}

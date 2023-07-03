@@ -1,6 +1,5 @@
-import { IRecipe } from "../../../interface/IRecipe";
-import useRecipe from "../../../store/recipe";
-import styles from "./Tags.module.scss";
+import { IRecipe } from "../interface/IRecipe";
+import useRecipe from "../store/recipe";
 
 const Tags = () => {
   const { currentRecipe, saveRecipes, setRecipes, setCurrentRecipe } =
@@ -16,10 +15,14 @@ const Tags = () => {
   };
 
   return (
-    <div className={styles.tags}>
+    <div className="text-blue-400 flex mt-2">
       {currentRecipe!.tag.map((tag: string, i: number) => {
         return (
-          <div className={styles.tag} key={i} onClick={() => onTag(tag)}>
+          <div
+            className="mr-2 cursor-pointer hover:underline max-md:pl-2"
+            key={i}
+            onClick={() => onTag(tag)}
+          >
             #{tag}
           </div>
         );

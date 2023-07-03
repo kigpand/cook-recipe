@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useInput } from "../hook/userInput";
 import useUser from "../store/user";
-import JoinInput from "./common/joinInput/JoinInput";
+import JoinInput from "./JoinInput";
 import Button from "./atoms/btn/Button";
 
 const Join = () => {

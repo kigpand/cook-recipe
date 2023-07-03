@@ -32,7 +32,11 @@
 }
 
 .add-button {
-  @apply border-none outline-none py-1 px-2 text-base rounded cursor-pointer text-white;
+  @apply border-none outline-none py-1 px-2 text-base rounded cursor-pointer text-white hover:bg-blue-400;
+}
+
+.recipe-input {
+  @apply border border-solid border-gray-400 outline-none h-7 w-1/2 mr-2;
 }
 
 body {

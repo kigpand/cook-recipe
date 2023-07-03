@@ -5,7 +5,7 @@ import AddRecipeTag from "./AddRecipeTag";
 import AddRecipeMaterial from "./AddRecipeMaterial";
 import AddRecipeItem from "./AddRecipeItem";
 import { useItemArr } from "../hook/useItemArr";
-import AddTitleComponent from "./common/addTitleComponent/AddTitleComponent";
+import AddTitleComponent from "./AddTitleComponent";
 import { IRecipe } from "../interface/IRecipe";
 import useRecipe from "../store/recipe";
 import useUser from "../store/user";

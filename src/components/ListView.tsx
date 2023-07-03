@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import useRecipe from "../store/recipe";
-import Tags from "./common/tags/Tags";
-import ImgSlider from "./imgSlider/ImgSlider";
 import { useWindowSize } from "../hook/useWindowSize";
 import { MOBILE_SIZE } from "../util/common";
+import ImgSlider from "./ImgSlider";
+import Tags from "./Tags";
 
 const ListView = () => {
   const { currentRecipe, setCurrentRecipe } = useRecipe();
@@ -25,7 +25,7 @@ const ListView = () => {
 
   return (
     <div
-      className="fixed h-full bg-white right-0 top-0 shadow flex flex-col p-4 pb-10 overflow-y-auto animate-view-motion font-TheJamsil5Bold z-20"
+      className="fixed h-full bg-white right-0 top-0 shadow flex flex-col p-4 pb-10 overflow-y-auto font-TheJamsil5Bold z-20 md:animate-view-motion max-md:w-full"
       id="listView"
     >
       {windowSize <= MOBILE_SIZE && (
