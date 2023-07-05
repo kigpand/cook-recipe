@@ -7,7 +7,7 @@ interface IAddLayout {
 const AddLayout = ({ title, input, onAdd }: IAddLayout) => {
   return (
     <div>
-      <div className="font-bold mb-2">{title}</div>
+      <div className="font-bold mb-2 text-xs">{title}</div>
       <div>
         <input
           type="text"

@@ -27,11 +27,16 @@ module.exports = {
       },
       animation: {
         "view-motion": "motion 0.2s forwards",
+        "list-anim": "listAnim 0.2s forwards linear",
       },
       keyframes: {
         motion: {
           "0%": { right: "-400px" },
           "100%": { right: "0px" },
+        },
+        listAnim: {
+          "0%": { opacity: 0, top: "-10px" },
+          "100%": { opacity: 1, top: "0px" },
         },
       },
     },

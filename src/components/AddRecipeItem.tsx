@@ -22,14 +22,14 @@ const AddRecipeItem = ({
   };
 
   return (
-    <div className="py-4 px-2 border border-solid border-b-gray-400">
+    <div className="py-4 px-2">
       <AddLayout title="레시피 등록" input={input} onAdd={onAdd} />
       <div className="w-full relative">
         {recipes.map((item: string, i: number) => {
           return (
             <div className="my-2 mx-0 flex items-center w-9/12" key={i}>
               <div className="w-full overflow-hidden whitespace-nowrap text-ellipsis">
-                {item}
+                {i + 1}. {item}
               </div>
               <div
                 className="absolute right-3 text-xs cursor-pointer"

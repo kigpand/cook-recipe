@@ -26,7 +26,7 @@ const AddRecipeMaterial = ({
   };
 
   return (
-    <div className="py-4 px-2 border border-solid border-b-gray-400">
+    <div className="py-4 px-2">
       <AddLayout title="재료 등록" input={input} onAdd={onAdd} />
       <div className="mt-3 grid grid-cols-repeat-2fr text-sm gap-y-1">
         {materials.map((item: string, i: number) => {

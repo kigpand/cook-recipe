@@ -28,9 +28,6 @@ export function login(func: any): any {
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
       console.error(errorCode);
     });
 }
@@ -40,7 +37,6 @@ export function logout(): any {
 }
 
 export function getUser(func: Function) {
-  const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       func(user);

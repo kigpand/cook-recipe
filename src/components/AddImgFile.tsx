@@ -48,23 +48,23 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
   };
 
   return (
-    <div className="flex flex-col border border-solid border-b-gray-400 py-4 px-2 items-center">
-      <div className="w-full mb-5 font-bold">이미지 등록</div>
+    <div className="flex flex-col py-4 px-2 items-center">
       <div className="w-full relative flex items-center">
         {loading && (
           <div className="w-full h-full z-50 absolute top-0 left-0 flex-center">
-            <div className="w-6 h-6 rounded-full border-2 border-solid border-gray-300 border-t-gray-700 animate-spin"></div>
+            <div className="w-6 h-6 rounded-full animate-spin"></div>
           </div>
         )}
         <img
           src="imgs/camera.png"
           alt="camera"
-          className="h-6 object-contain border border-solid border-gray-400 p-1 hover:cursor-pointer hover:bg-gray-300"
+          className="h-8 object-contain border border-solid border-gray-400 p-1 hover:cursor-pointer hover:bg-gray-300 rounded"
           onClick={onChangeEvent}
         ></img>
         <input
           ref={ref}
           type="file"
+          accept="image/*"
           multiple
           onChange={onFileChange}
           hidden

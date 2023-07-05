@@ -48,10 +48,9 @@ const AddRecipe = () => {
         className="w-full h-full absolute top-0 left-0 cursor-pointer"
         onClick={() => setOnAdd(false)}
       ></div>
-      <div className="z-10 w-96 overflow-y-auto bg-white max-h-max70">
-        <div className="p-3 bg-shadowBlue text-white">게시글 작성</div>
-        <AddTitleComponent title="제목" input={title} />
+      <div className="z-10 w-96 overflow-y-auto bg-white max-h-max70 md:rounded md:p-3">
         <AddImgFile addImg={addImg} />
+        <AddTitleComponent title="제목" input={title} />
         <AddRecipeTag
           tags={tags.arr}
           onAddTag={tags.onAdd}

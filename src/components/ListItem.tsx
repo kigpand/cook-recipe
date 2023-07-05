@@ -22,7 +22,7 @@ const ListItem = ({ item, onView }: IListItem) => {
         alt="view"
       />
       {back && (
-        <div className="font-bold absolute top-0 left-0 w-full h-full z-10 text-white flex items-center justify-center bg-black4">
+        <div className="font-bold absolute top-0 left-0 w-full h-full z-10 text-white flex items-center justify-center bg-black4 cursor-pointer animate-list-anim">
           {item.name}
         </div>
       )}

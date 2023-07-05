@@ -25,7 +25,7 @@ const AddRecipeTag = ({ tags, onAddTag, removeTag }: IAddRecipeTag) => {
   };
 
   return (
-    <div className="py-4 px-2 border border-solid border-b-slate-400">
+    <div className="py-4 px-2">
       <div className="flex items-center">
         <AddLayout title="태그 등록" input={input} onAdd={onAdd} />
         <div className="ml-3" ref={containerRef}>
