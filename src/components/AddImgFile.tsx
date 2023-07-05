@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import ImgView from "./AddImgView";
+import { uploadImg } from "../api/upload";
 
 interface IAddImgFile {
   addImg: (data: string[]) => void;
@@ -7,40 +8,27 @@ interface IAddImgFile {
 
 const AddImgFile = ({ addImg }: IAddImgFile) => {
   const ref = useRef<HTMLInputElement>(null);
-  const [fileArr, setFileArr] = useState<string[]>([]);
-  const [currentImg, setCurrentImg] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [imgs, setImgs] = useState<string[]>([]);
+  const [currentImg, setCurrentImg] = useState<string>("");
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     // 이미지 화면에 띄우기
     if (!e.target.files) return;
     setLoading(true);
-    const imgArr: string[] = [];
-    const length = e.target.files.length;
-    for (let i = 0; i < length; i++) {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[i]);
-      reader.onload = (e: any) => {
-        if (reader.readyState === 2) {
-          imgArr.push(e.target.result);
-          if (i === length - 1) {
-            addImg(imgArr);
-            setFileArr(imgArr);
-          }
-        }
-        setLoading(false);
-      };
+    const arr: string[] = [];
+    for (let i = 0; i < e.target.files.length; i++) {
+      const result = await uploadImg(e.target.files[i]);
+      arr.push(result);
     }
+    setImgs(arr);
+    setLoading(false);
   };
 
   const onChangeEvent = () => {
     if (ref.current) {
       ref.current.click();
     }
-  };
-
-  const onView = (img: string) => {
-    setCurrentImg(img);
   };
 
   const onClearItem = () => {
@@ -52,7 +40,7 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
       <div className="w-full relative flex items-center">
         {loading && (
           <div className="w-full h-full z-50 absolute top-0 left-0 flex-center">
-            <div className="w-6 h-6 rounded-full animate-spin"></div>
+            <div className="w-6 h-6 rounded-full animate-spin border-4 border-solid border-gray-300 border-t-gray-500"></div>
           </div>
         )}
         <img
@@ -70,18 +58,17 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
           hidden
         ></input>
         <div className="flex ml-7">
-          {fileArr.length > 0 &&
-            fileArr.map((item: string, i: number) => {
-              return (
-                <img
-                  src={item}
-                  alt={item}
-                  key={i}
-                  className="mr-3 w-7 h-7 cursor-pointer"
-                  onClick={() => onView(item)}
-                />
-              );
-            })}
+          {imgs.map((item: string, i: number) => {
+            return (
+              <img
+                src={item}
+                alt={item}
+                key={i}
+                className="mr-3 w-7 h-7 cursor-pointer"
+                onClick={() => setCurrentImg(item)}
+              />
+            );
+          })}
         </div>
       </div>
       {currentImg !== "" && (
