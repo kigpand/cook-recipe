@@ -1,17 +1,13 @@
-import { IRecipe } from "../interface/IRecipe";
 import useRecipe from "../store/recipe";
 
 const Tags = () => {
-  const { currentRecipe, saveRecipes, setRecipes, setCurrentRecipe } =
-    useRecipe();
+  const { currentRecipe, setCurrentRecipe } = useRecipe();
+  const { setSearch, changeIsMy } = useRecipe();
 
   const onTag = (data: string) => {
-    const filter = saveRecipes.filter((item: IRecipe) => {
-      const result = item.tag.find((tag: string) => tag === data);
-      return result ? item : false;
-    });
+    changeIsMy(false);
+    setSearch(data);
     setCurrentRecipe(null);
-    setRecipes(filter);
   };
 
   return (

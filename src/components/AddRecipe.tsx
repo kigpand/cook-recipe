@@ -10,9 +10,10 @@ import { IRecipe } from "../interface/IRecipe";
 import useRecipe from "../store/recipe";
 import useUser from "../store/user";
 import { addContent } from "../api/firebase";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const AddRecipe = () => {
-  const { setRecipes, setOnAdd, saveRecipes, setSaveRecipes } = useRecipe();
+  const { setOnAdd } = useRecipe();
   const { user } = useUser();
   const [img, setImg] = useState<string[]>([]);
   const tags = useItemArr([]);
@@ -21,6 +22,10 @@ const AddRecipe = () => {
   const title = useInput("");
   const content = useInput("");
   const link = useInput("");
+  const query = useQueryClient();
+  const updateRecipe = useMutation(({ recipe }: any) => addContent(recipe), {
+    onSuccess: () => query.invalidateQueries(["contents"]),
+  });
 
   const addImg = useCallback((data: string[]) => {
     setImg(data);
@@ -52,11 +57,16 @@ const AddRecipe = () => {
       tag: tags.arr,
       url: link.value,
       content: content.value,
+      date: new Date().getTime(),
     };
-    addContent(recipe);
-    setRecipes([...saveRecipes, recipe]);
-    setSaveRecipes([...saveRecipes, recipe]);
-    setOnAdd(false);
+    updateRecipe.mutate(
+      { recipe },
+      {
+        onSuccess: () => {
+          setOnAdd(false);
+        },
+      }
+    );
   };
 
   return (

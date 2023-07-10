@@ -1,5 +1,4 @@
 import { useInput } from "../../hook/userInput";
-import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 
 interface IMobileSearch {
@@ -9,14 +8,11 @@ interface IMobileSearch {
 
 const MobileSearch = ({ onCloseSearch, onCloseToggle }: IMobileSearch) => {
   const input = useInput("");
-  const { saveRecipes, setRecipes } = useRecipe();
+  const { setSearch, changeIsMy } = useRecipe();
 
   const onSearch = () => {
-    const filter = saveRecipes.filter((item: IRecipe) => {
-      const result = item.tag.find((tag: string) => tag === input.value);
-      return result ? item : false;
-    });
-    setRecipes(filter);
+    changeIsMy(false);
+    setSearch(input.value);
     input.onClear();
     onCloseSearch();
     onCloseToggle();

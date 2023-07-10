@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { IUser } from "../interface/IUser";
 
 interface IUserStore {
   user: any;

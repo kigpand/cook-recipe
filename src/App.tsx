@@ -8,13 +8,13 @@ import useRecipe from "./store/recipe";
 import useUser from "./store/user";
 import { MOBILE_SIZE } from "./util/common";
 import { useEffect } from "react";
-import { getContents, getUser } from "./api/firebase";
-import { IRecipe } from "./interface/IRecipe";
+import { getUser } from "./api/firebase";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
+  const queryClient = new QueryClient();
   const windowSize = useWindowSize();
-  const { setRecipes, setSaveRecipes, onAdd, currentRecipe, setCurrentRecipe } =
-    useRecipe();
+  const { onAdd, currentRecipe, setCurrentRecipe } = useRecipe();
   const { setUser } = useUser();
 
   function unView() {
@@ -33,21 +33,19 @@ function App() {
     getUser((state: any) => {
       setUser(state);
     });
-    getContents().then((item: IRecipe[]) => {
-      setRecipes(item);
-      setSaveRecipes(item);
-    });
   }, []);
 
   return (
-    <div
-      className="w-full h-screen flex flex-col items-center"
-      onClick={unView}
-    >
-      {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
-      {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
-      {onAdd && <AddRecipe />}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div
+        className="w-full h-screen flex flex-col items-center"
+        onClick={unView}
+      >
+        {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
+        {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
+        {onAdd && <AddRecipe />}
+      </div>
+    </QueryClientProvider>
   );
 }
 

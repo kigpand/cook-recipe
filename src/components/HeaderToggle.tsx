@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import useUser from "../store/user";
 import useRecipe from "../store/recipe";
 import MobileSearch from "./mobile/MobileSearch";
-import { IRecipe } from "../interface/IRecipe";
 import { login, logout } from "../api/firebase";
 
 interface IHeaderToggle {
@@ -12,7 +11,7 @@ interface IHeaderToggle {
 const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   const ref = useRef<HTMLDivElement>(null);
   const { user, setUser } = useUser();
-  const { setOnAdd, setRecipes, saveRecipes } = useRecipe();
+  const { setOnAdd, changeIsMy, isMy } = useRecipe();
   const [search, setSearch] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
   };
 
   const onLogout = () => {
-    setRecipes(saveRecipes);
     setUser(null);
     logout();
   };
@@ -49,9 +47,8 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
 
   const onMyRecipe = () => {
     if (!user) return;
-    const filter = saveRecipes.filter((item: IRecipe) => item.id === user.id);
+    changeIsMy(!isMy);
     onCloseToggle();
-    setRecipes(filter);
   };
 
   return (
@@ -61,7 +58,7 @@ const HeaderToggle = ({ onCloseToggle }: IHeaderToggle) => {
       </div>
       {user && (
         <div className="header-toggle-list" onClick={onMyRecipe}>
-          내 레시피
+          {isMy ? "전체 레시피" : "내 레시피"}
         </div>
       )}
       {user && (

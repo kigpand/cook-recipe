@@ -8,4 +8,5 @@ export interface IRecipe {
   url: string;
   uuid: string;
   content: string;
+  date: number;
 }

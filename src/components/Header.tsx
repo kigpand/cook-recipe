@@ -6,50 +6,44 @@ import { useInput } from "../hook/userInput";
 import { login, logout } from "../api/firebase";
 
 const Header = () => {
-  const search = useInput("");
+  const searchInput = useInput("");
   const { user, setUser } = useUser();
-  const { setOnAdd, setRecipes, recipes, saveRecipes } = useRecipe();
-  const [isMy, setIsMy] = useState<boolean>(false);
+  const { setOnAdd, isMy, changeIsMy, setSearch, search } = useRecipe();
 
   const onMyRecipe = () => {
     if (!user) return;
+    setSearch("");
     if (isMy) {
-      setRecipes(saveRecipes);
-      setIsMy(false);
+      changeIsMy(false);
       return;
     }
-    const filter = saveRecipes.filter((item: IRecipe) => item.id === user.id);
-    setRecipes(filter);
-    setIsMy(true);
+    changeIsMy(true);
   };
 
   const onSearch = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      const filter = saveRecipes.filter((item: IRecipe) => {
-        const result = item.tag.find((tag: string) => tag === search.value);
-        return result ? item : false;
-      });
-      setIsMy(false);
-      setRecipes(filter);
-      search.onClear();
+      setSearch(searchInput.value);
+      changeIsMy(false);
+      searchInput.onClear();
     }
   };
 
   const onLogin = () => {
+    setSearch("");
     login((data: any) => setUser(data));
   };
 
   const onLogout = () => {
-    setRecipes(saveRecipes);
+    changeIsMy(false);
+    setSearch("");
     setUser(null);
     logout();
   };
 
   const onReload = () => {
-    if (recipes.length === saveRecipes.length) return;
-    setRecipes(saveRecipes);
-    setIsMy(false);
-    search.onClear();
+    changeIsMy(false);
+    setSearch("");
+    searchInput.onClear();
   };
 
   return (
@@ -60,10 +54,10 @@ const Header = () => {
           className="w-52 h-7 outline-none border border-solid border-slate-200 hover:text-gray-200 rounded-md"
           placeholder="search"
           onKeyPress={onSearch}
-          value={search.value}
-          onChange={search.onChange}
+          value={searchInput.value}
+          onChange={searchInput.onChange}
         ></input>
-        {recipes.length !== saveRecipes.length && (
+        {(isMy || search !== "") && (
           <img
             src={`${process.env.PUBLIC_URL}/imgs/reload.png`}
             alt="새로고침"
