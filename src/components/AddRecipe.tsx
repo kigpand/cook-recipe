@@ -9,6 +9,7 @@ import AddTitleComponent from "./AddTitleComponent";
 import { IRecipe } from "../interface/IRecipe";
 import useRecipe from "../store/recipe";
 import useUser from "../store/user";
+import { addContent } from "../api/firebase";
 
 const AddRecipe = () => {
   const { setRecipes, setOnAdd, saveRecipes, setSaveRecipes } = useRecipe();
@@ -25,10 +26,15 @@ const AddRecipe = () => {
     setImg(data);
   }, []);
 
+  const makeId = () => {
+    return Math.random().toString(36).substring(2, 16);
+  };
+
   const onSubmit = () => {
     if (!user) return;
     const recipe: IRecipe = {
-      id: user.id,
+      uuid: makeId(),
+      id: user.email,
       name: title.value,
       material: materials.arr,
       imgUrl: img,
@@ -37,6 +43,7 @@ const AddRecipe = () => {
       url: link.value,
       content: content.value,
     };
+    addContent(recipe);
     setRecipes([...saveRecipes, recipe]);
     setSaveRecipes([...saveRecipes, recipe]);
     setOnAdd(false);

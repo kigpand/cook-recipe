@@ -22,6 +22,7 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
       arr.push(result);
     }
     setImgs(arr);
+    addImg(arr);
     setLoading(false);
   };
 
