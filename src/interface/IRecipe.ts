@@ -1,6 +1,6 @@
 export interface IRecipe {
   id: string;
-  name: string;
+  title: string;
   material: string[];
   imgUrl: string[];
   recipe: string[];

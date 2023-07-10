@@ -32,10 +32,20 @@ const AddRecipe = () => {
 
   const onSubmit = () => {
     if (!user) return;
+    if (title.value === "") return alert("제목을 입력해주세요");
+    if (tags.arr.length === 0) return alert("하나 이상의 태그를 달아주세요");
+    if (materials.arr.length === 0) {
+      return alert("재료는 한가지 이상을 적으셔야 합니다");
+    }
+    if (recipeList.arr.length === 0) {
+      return alert("하나 이상의 레시피를 적어주세요!");
+    }
+    if (content.value === "") return alert("소개를 적어주세요.");
+
     const recipe: IRecipe = {
       uuid: makeId(),
       id: user.email,
-      name: title.value,
+      title: title.value,
       material: materials.arr,
       imgUrl: img,
       recipe: recipeList.arr,

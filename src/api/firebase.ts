@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { ref, set, getDatabase } from "firebase/database";
+import { ref, set, getDatabase, get } from "firebase/database";
 import { IRecipe } from "../interface/IRecipe";
 
 const firebaseConfig = {
@@ -51,4 +51,11 @@ export function getUser(func: Function) {
 
 export async function addContent(recipe: IRecipe) {
   set(ref(database, `contents/${recipe.uuid}`), recipe);
+}
+
+export async function getContents(): Promise<IRecipe[]> {
+  return get(ref(database, "contents")).then((item) => {
+    if (item.exists()) return Object.values(item.val());
+    return [];
+  });
 }

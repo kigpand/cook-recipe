@@ -8,7 +8,8 @@ import useRecipe from "./store/recipe";
 import useUser from "./store/user";
 import { MOBILE_SIZE } from "./util/common";
 import { useEffect } from "react";
-import { getUser } from "./api/firebase";
+import { getContents, getUser } from "./api/firebase";
+import { IRecipe } from "./interface/IRecipe";
 
 function App() {
   const windowSize = useWindowSize();
@@ -29,10 +30,12 @@ function App() {
   }
 
   useEffect(() => {
-    setRecipes([]);
-    setSaveRecipes([]);
     getUser((state: any) => {
       setUser(state);
+    });
+    getContents().then((item: IRecipe[]) => {
+      setRecipes(item);
+      setSaveRecipes(item);
     });
   }, []);
 

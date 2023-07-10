@@ -13,7 +13,7 @@ const ListView = () => {
   const onImgView = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
     if (!currentRecipe) return;
-    if (currentRecipe?.imgUrl.length === 0) {
+    if (!currentRecipe.imgUrl || currentRecipe.imgUrl.length === 0) {
       return alert("보여줄 이미지가 존재하지 않습니다.");
     }
     setImgs(currentRecipe?.imgUrl);
@@ -31,16 +31,20 @@ const ListView = () => {
       {windowSize <= MOBILE_SIZE && (
         <img
           src={`${process.env.PUBLIC_URL}/imgs/close.png`}
+          alt="close"
           className="absolute top-3 right-3 w-3 h-3"
           onClick={() => setCurrentRecipe(null)}
         ></img>
       )}
       {imgs.length > 0 && <ImgSlider imgs={imgs} onClearItem={onClearItem} />}
       <div className="text-2xl font-bold mb-3 text-center">
-        {currentRecipe?.name}
+        {currentRecipe?.title}
       </div>
       <img
-        src={currentRecipe!.imgUrl[0] || "imgs/noimg.png"}
+        src={
+          (currentRecipe!.imgUrl && currentRecipe!.imgUrl[0]) ||
+          "imgs/noimg.png"
+        }
         alt="img"
         className="w-96 h-72 mb-3 text-center max-md:w-full"
         onClick={onImgView}

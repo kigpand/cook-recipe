@@ -17,13 +17,13 @@ const ListItem = ({ item, onView }: IListItem) => {
       onMouseLeave={() => setBack(false)}
     >
       <img
-        src={item.imgUrl[0] || "imgs/noimg.png"}
+        src={(item.imgUrl && item.imgUrl[0]) || "imgs/noimg.png"}
         className="w-full h-full"
         alt="view"
       />
       {back && (
         <div className="font-bold absolute top-0 left-0 w-full h-full z-10 text-white flex items-center justify-center bg-black4 cursor-pointer animate-list-anim">
-          {item.name}
+          {item.title}
         </div>
       )}
     </div>

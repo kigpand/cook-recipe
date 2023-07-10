@@ -18,12 +18,12 @@ const MobileListItem = ({ item }: IMobileListItem) => {
       onClick={() => onView(item)}
     >
       <img
-        src={item.imgUrl[0] || "imgs/noimg.png"}
+        src={(item.imgUrl && item.imgUrl[0]) || "imgs/noimg.png"}
         className="w-24 h-24 rounded-lg"
         alt="view"
       />
       <div className="ml-3 w-48">
-        <div className="font-semibold">{item.name}</div>
+        <div className="font-semibold">{item.title}</div>
         <div className="mt-1 text-[14px]">{item.content}</div>
       </div>
     </div>
