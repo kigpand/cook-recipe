@@ -51,7 +51,7 @@ const Header = () => {
       <div className=" flex items-center">
         <input
           type="text"
-          className="w-52 h-7 outline-none border border-solid border-slate-200 hover:text-gray-200 rounded-md"
+          className="w-52 h-7 outline-none border border-solid border-slate-200 hover:text-gray-600 rounded-md"
           placeholder="search"
           onKeyPress={onSearch}
           value={searchInput.value}

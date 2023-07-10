@@ -6,12 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getContents } from "../../api/firebase";
 import { useEffect, useState } from "react";
 import useUser from "../../store/user";
+import Loading from "../Loading";
 
 const MobileLists = () => {
   const { user } = useUser();
   const { currentRecipe, isMy, search } = useRecipe();
-  const { data: recipes, isLoading } = useQuery(["contents"], () =>
-    getContents()
+  const { data: recipes, isLoading } = useQuery(
+    ["contents"],
+    () => getContents(),
+    { staleTime: 1000 * 60 }
   );
   const [arr, setArr] = useState<IRecipe[]>([]);
 
@@ -47,16 +50,18 @@ const MobileLists = () => {
 
   return (
     <div className="w-full h-full">
-      {isLoading && <div>로딩</div>}
       <div className="font-bold pt-5 pl-5 mb-8 underline">
         {isMy
           ? "모두에게 자신의 레시피를 공유해보세요!"
           : "여러분의 레시피를 등록해보세요!"}
       </div>
-      {arr.map((item: IRecipe, i: number) => {
-        return <MobileListItem key={i} item={item} />;
-      })}
+      {arr
+        ?.sort((a: IRecipe, b: IRecipe) => b.date - a.date)
+        .map((item: IRecipe, i: number) => {
+          return <MobileListItem key={i} item={item} />;
+        })}
       {currentRecipe && <ListView />}
+      {isLoading && <Loading />}
     </div>
   );
 };

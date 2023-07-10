@@ -11,6 +11,7 @@ import useRecipe from "../store/recipe";
 import useUser from "../store/user";
 import { addContent } from "../api/firebase";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Loading from "./Loading";
 
 const AddRecipe = () => {
   const { setOnAdd } = useRecipe();
@@ -110,6 +111,7 @@ const AddRecipe = () => {
           </button>
         </div>
       </div>
+      {updateRecipe.isLoading && <Loading />}
     </div>
   );
 };

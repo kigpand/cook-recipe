@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import ImgView from "./AddImgView";
 import { uploadImg } from "../api/upload";
+import Loading from "./Loading";
 
 interface IAddImgFile {
   addImg: (data: string[]) => void;
@@ -39,11 +40,7 @@ const AddImgFile = ({ addImg }: IAddImgFile) => {
   return (
     <div className="flex flex-col py-4 px-2 items-center">
       <div className="w-full relative flex items-center">
-        {loading && (
-          <div className="w-full h-full z-50 absolute top-0 left-0 flex-center">
-            <div className="w-6 h-6 rounded-full animate-spin border-4 border-solid border-gray-300 border-t-gray-500"></div>
-          </div>
-        )}
+        {loading && <Loading />}
         <img
           src="imgs/camera.png"
           alt="camera"
