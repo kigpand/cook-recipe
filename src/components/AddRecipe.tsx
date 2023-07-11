@@ -10,10 +10,10 @@ import { IRecipe } from "../interface/IRecipe";
 import useRecipe from "../store/recipe";
 import useUser from "../store/user";
 import { addContent } from "../api/firebase";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import Loading from "./Loading";
 
-const AddRecipe = () => {
+const AddRecipe = ({ refetch }: any) => {
   const { setOnAdd } = useRecipe();
   const { user } = useUser();
   const [img, setImg] = useState<string[]>([]);
@@ -23,9 +23,11 @@ const AddRecipe = () => {
   const title = useInput("");
   const content = useInput("");
   const link = useInput("");
-  const query = useQueryClient();
   const updateRecipe = useMutation(({ recipe }: any) => addContent(recipe), {
-    onSuccess: () => query.invalidateQueries(["contents"]),
+    onSuccess: () => {
+      refetch();
+      setOnAdd(false);
+    },
   });
 
   const addImg = useCallback((data: string[]) => {
@@ -62,11 +64,7 @@ const AddRecipe = () => {
     };
     updateRecipe.mutate(
       { recipe },
-      {
-        onSuccess: () => {
-          setOnAdd(false);
-        },
-      }
+      { onSuccess: () => alert("레시피가 등록됬습니다.") }
     );
   };
 

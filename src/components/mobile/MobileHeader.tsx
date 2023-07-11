@@ -3,12 +3,17 @@ import useRecipe from "../../store/recipe";
 import HeaderToggle from "../HeaderToggle";
 
 const MobileHeader = () => {
-  const { search, isMy } = useRecipe();
+  const { search, isMy, changeIsMy, setSearch } = useRecipe();
   const [toggle, setToggle] = useState<boolean>(false);
 
   const onCloseToggle = useCallback(() => {
     setToggle(false);
   }, []);
+
+  const onReload = () => {
+    changeIsMy(false);
+    setSearch("");
+  };
 
   return (
     <div className="w-full h-10 flex items-center bg-white relative shadow">
@@ -18,7 +23,7 @@ const MobileHeader = () => {
             src={`${process.env.PUBLIC_URL}/imgs/reload.png`}
             alt="reload"
             className="w-5 h-5 p-1 border border-solid border-slate-200 absolute left-2 rounded-s"
-            onClick={() => {}}
+            onClick={onReload}
           />
         ))}
       <img

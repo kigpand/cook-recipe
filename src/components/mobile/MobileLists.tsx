@@ -1,21 +1,22 @@
 import { IRecipe } from "../../interface/IRecipe";
 import useRecipe from "../../store/recipe";
 import MobileListItem from "./MobileListItem";
-import ListView from "../ListView";
 import { useQuery } from "@tanstack/react-query";
 import { getContents } from "../../api/firebase";
 import { useEffect, useState } from "react";
 import useUser from "../../store/user";
-import Loading from "../Loading";
+import ListsFooter from "../ListsFooter";
 
 const MobileLists = () => {
   const { user } = useUser();
-  const { currentRecipe, isMy, search } = useRecipe();
-  const { data: recipes, isLoading } = useQuery(
-    ["contents"],
-    () => getContents(),
-    { staleTime: 1000 * 60 }
-  );
+  const { isMy, search } = useRecipe();
+  const {
+    data: recipes,
+    isLoading,
+    refetch,
+  } = useQuery(["contents"], getContents, {
+    staleTime: 1000 * 60,
+  });
   const [arr, setArr] = useState<IRecipe[]>([]);
 
   useEffect(() => {
@@ -60,8 +61,7 @@ const MobileLists = () => {
         .map((item: IRecipe, i: number) => {
           return <MobileListItem key={i} item={item} />;
         })}
-      {currentRecipe && <ListView />}
-      {isLoading && <Loading />}
+      <ListsFooter isLoading={isLoading} refetch={refetch} />
     </div>
   );
 };

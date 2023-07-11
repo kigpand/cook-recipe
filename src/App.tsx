@@ -43,7 +43,6 @@ function App() {
       >
         {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
         {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
-        {onAdd && <AddRecipe />}
       </div>
     </QueryClientProvider>
   );
