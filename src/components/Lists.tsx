@@ -9,7 +9,7 @@ import ListsFooter from "./ListsFooter";
 
 const Lists = () => {
   const { user } = useUser();
-  const { setCurrentRecipe, search, isMy } = useRecipe();
+  const { search, isMy } = useRecipe();
   const {
     data: recipes,
     isLoading,
@@ -47,10 +47,6 @@ const Lists = () => {
     }
   }, [isMy]);
 
-  const onView = useCallback((recipe: IRecipe) => {
-    setCurrentRecipe(recipe);
-  }, []);
-
   return (
     <div className="w-2/3 h-4/5 pt-12 grid justify-center grid-cols-5 auto-rows-gird150 gap-2.5">
       <div className="row-start-1 row-end-4 col-start-1 col-end-3 text-white shadow">
@@ -74,7 +70,7 @@ const Lists = () => {
       {arr
         ?.sort((a: IRecipe, b: IRecipe) => b.date - a.date)
         .map((item: IRecipe, i: number) => {
-          return <ListItem key={i} item={item} onView={onView} />;
+          return <ListItem key={i} item={item} />;
         })}
       <ListsFooter isLoading={isLoading} refetch={refetch} />
     </div>

@@ -14,20 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 function App() {
   const queryClient = new QueryClient();
   const windowSize = useWindowSize();
-  const { onAdd, currentRecipe, setCurrentRecipe } = useRecipe();
   const { setUser } = useUser();
-
-  function unView() {
-    if (currentRecipe) {
-      const listView = document.getElementById("listView");
-      if (listView) {
-        listView.style.animation = "closeMotion 0.2s forwards";
-        listView.addEventListener("animationend", () => {
-          setCurrentRecipe(null);
-        });
-      }
-    }
-  }
 
   useEffect(() => {
     getUser((state: any) => {
@@ -37,10 +24,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div
-        className="w-full h-screen flex flex-col items-center"
-        onClick={unView}
-      >
+      <div className="w-full h-screen flex flex-col items-center">
         {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
         {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
       </div>
