@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { IRecipe } from "../interface/IRecipe";
+import React from "react";
 import useRecipe from "../store/recipe";
 import useUser from "../store/user";
 import { useInput } from "../hook/userInput";

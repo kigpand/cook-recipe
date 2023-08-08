@@ -10,11 +10,9 @@ import ListsFooter from "./ListsFooter";
 const Lists = () => {
   const { user } = useUser();
   const { setCurrentRecipe, search, isMy } = useRecipe();
-  const {
-    data: recipes,
-    isLoading,
-    refetch,
-  } = useQuery(["contents"], getContents);
+  const { data: recipes, refetch } = useQuery(["contents"], getContents, {
+    suspense: true,
+  });
   const [arr, setArr] = useState<IRecipe[]>([]);
 
   useEffect(() => {
@@ -76,7 +74,7 @@ const Lists = () => {
         .map((item: IRecipe, i: number) => {
           return <ListItem key={i} item={item} onView={onView} />;
         })}
-      <ListsFooter isLoading={isLoading} refetch={refetch} />
+      <ListsFooter refetch={refetch} />
     </div>
   );
 };

@@ -10,12 +10,9 @@ import ListsFooter from "../ListsFooter";
 const MobileLists = () => {
   const { user } = useUser();
   const { isMy, search } = useRecipe();
-  const {
-    data: recipes,
-    isLoading,
-    refetch,
-  } = useQuery(["contents"], getContents, {
+  const { data: recipes, refetch } = useQuery(["contents"], getContents, {
     staleTime: 1000 * 60,
+    suspense: true,
   });
   const [arr, setArr] = useState<IRecipe[]>([]);
 
@@ -61,7 +58,7 @@ const MobileLists = () => {
         .map((item: IRecipe, i: number) => {
           return <MobileListItem key={i} item={item} />;
         })}
-      <ListsFooter isLoading={isLoading} refetch={refetch} />
+      <ListsFooter refetch={refetch} />
     </div>
   );
 };

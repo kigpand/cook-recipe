@@ -1,4 +1,3 @@
-import AddRecipe from "./components/AddRecipe";
 import Header from "./components/Header";
 import MobileHeader from "./components/mobile/MobileHeader";
 import Lists from "./components/Lists";
@@ -7,14 +6,15 @@ import { useWindowSize } from "./hook/useWindowSize";
 import useRecipe from "./store/recipe";
 import useUser from "./store/user";
 import { MOBILE_SIZE } from "./util/common";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { getUser } from "./api/firebase";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Loading from "./components/Loading";
 
 function App() {
   const queryClient = new QueryClient();
   const windowSize = useWindowSize();
-  const { onAdd, currentRecipe, setCurrentRecipe } = useRecipe();
+  const { currentRecipe, setCurrentRecipe } = useRecipe();
   const { setUser } = useUser();
 
   function unView() {
@@ -42,7 +42,9 @@ function App() {
         onClick={unView}
       >
         {windowSize > MOBILE_SIZE ? <Header /> : <MobileHeader />}
-        {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
+        <Suspense fallback={<Loading />}>
+          {windowSize > MOBILE_SIZE ? <Lists /> : <MobileLists />}
+        </Suspense>
       </div>
     </QueryClientProvider>
   );
