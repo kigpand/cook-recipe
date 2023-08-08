@@ -1,26 +1,22 @@
 import React, { useState } from "react";
+import useRecipe from "../store/recipe";
 import { useWindowSize } from "../hook/useWindowSize";
 import { MOBILE_SIZE } from "../util/common";
 import ImgSlider from "./ImgSlider";
 import Tags from "./Tags";
-import { IRecipe } from "../interface/IRecipe";
 
-type Props = {
-  recipe: IRecipe;
-  onCloseView: () => void;
-};
-
-const ListView = ({ recipe, onCloseView }: Props) => {
+const ListView = () => {
+  const { currentRecipe, setCurrentRecipe } = useRecipe();
   const [imgs, setImgs] = useState<string[]>([]);
   const windowSize = useWindowSize();
 
   const onImgView = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
-    if (!recipe) return;
-    if (!recipe.imgUrl || recipe.imgUrl.length === 0) {
+    if (!currentRecipe) return;
+    if (!currentRecipe.imgUrl || currentRecipe.imgUrl.length === 0) {
       return alert("보여줄 이미지가 존재하지 않습니다.");
     }
-    setImgs(recipe?.imgUrl);
+    setImgs(currentRecipe?.imgUrl);
   };
 
   const onClearItem = () => {
@@ -37,25 +33,30 @@ const ListView = ({ recipe, onCloseView }: Props) => {
           src={`${process.env.PUBLIC_URL}/imgs/close.png`}
           alt="close"
           className="absolute top-3 right-3 w-3 h-3"
-          onClick={onCloseView}
+          onClick={() => setCurrentRecipe(null)}
         ></img>
       )}
       {imgs.length > 0 && <ImgSlider imgs={imgs} onClearItem={onClearItem} />}
-      <div className="text-2xl font-bold mb-3 text-center">{recipe?.title}</div>
+      <div className="text-2xl font-bold mb-3 text-center">
+        {currentRecipe?.title}
+      </div>
       <img
-        src={(recipe!.imgUrl && recipe!.imgUrl[0]) || "imgs/noimg.png"}
+        src={
+          (currentRecipe!.imgUrl && currentRecipe!.imgUrl[0]) ||
+          "imgs/noimg.png"
+        }
         alt="img"
         className="w-96 h-72 mb-3 text-center max-md:w-full"
         onClick={onImgView}
       />
-      <Tags recipe={recipe} onCloseView={onCloseView} />
+      <Tags />
       <div className="w-96 mt-3 text-red-500 underline max-md:w-full">
-        {recipe?.content}
+        {currentRecipe?.content}
       </div>
       <div className="mt-5 flex">
         <div className="mr-5 font-bold">재료</div>
         <div className="grid grid-cols-repeat-2fr">
-          {recipe!.material.map((item: string, i: number) => {
+          {currentRecipe!.material.map((item: string, i: number) => {
             return (
               <div className="w-32 mr-5 mb-2" key={i}>
                 {item}
@@ -67,7 +68,7 @@ const ListView = ({ recipe, onCloseView }: Props) => {
       <div className="mt-5 pb-2 w-96 max-md:w-full">
         <div className="font-bold mb-2">조리 방법</div>
         <div className="flex flex-col">
-          {recipe!.recipe.map((item: string, i: number) => {
+          {currentRecipe!.recipe.map((item: string, i: number) => {
             return (
               <div className="leading-6 text-gray-400 mb-2" key={i}>
                 <b className="text-black mr-1">{i + 1}.</b>
@@ -77,9 +78,9 @@ const ListView = ({ recipe, onCloseView }: Props) => {
           })}
         </div>
       </div>
-      {recipe!.url !== "" && (
+      {currentRecipe!.url !== "" && (
         <a
-          href={recipe!.url}
+          href={currentRecipe!.url}
           className="mt-2 no-underline text-blue-700 pb-10 hover:underline"
           target={"_blank"}
           rel="noreferrer"

@@ -1,17 +1,21 @@
-import { useState } from "react";
 import { IRecipe } from "../../interface/IRecipe";
-import ListView from "../ListView";
+import useRecipe from "../../store/recipe";
 
 interface IMobileListItem {
   item: IRecipe;
 }
 
 const MobileListItem = ({ item }: IMobileListItem) => {
-  const [isView, setIsView] = useState<boolean>(false);
+  const { setCurrentRecipe } = useRecipe();
+
+  function onView(recipe: IRecipe) {
+    setCurrentRecipe(recipe);
+  }
+
   return (
     <div
       className="w-full h-32 flex items-center justify-center border border-solid border-b-gray-400"
-      onClick={() => setIsView(true)}
+      onClick={() => onView(item)}
     >
       <img
         src={(item.imgUrl && item.imgUrl[0]) || "imgs/noimg.png"}
@@ -22,9 +26,6 @@ const MobileListItem = ({ item }: IMobileListItem) => {
         <div className="font-semibold">{item.title}</div>
         <div className="mt-1 text-[14px]">{item.content}</div>
       </div>
-      {isView && (
-        <ListView recipe={item} onCloseView={() => setIsView(false)} />
-      )}
     </div>
   );
 };
