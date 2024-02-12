@@ -3,10 +3,12 @@ import useRecipe from "../store/recipe";
 import useUser from "../store/user";
 import { useInput } from "../hook/userInput";
 import { login, logout } from "../api/firebase";
+import { useAxios } from "../hook/useAxios";
 
 const Header = () => {
   const searchInput = useInput("");
   const { user, setUser } = useUser();
+  const { axiosInstance } = useAxios();
   const { setOnAdd, isMy, changeIsMy, setSearch, search } = useRecipe();
 
   const onMyRecipe = () => {
@@ -45,8 +47,17 @@ const Header = () => {
     searchInput.onClear();
   };
 
+  async function onTest(category: any) {
+    await axiosInstance
+      .post(`http://localhost:3010/category`, {
+        category: category,
+      })
+      .then((data) => console.log(data));
+  }
+
   return (
     <div className=" w-full h-14 shadow flex items-center justify-center bg-white text-sm font-bold">
+      <div onClick={() => onTest(1)}>test</div>
       <div className=" flex items-center">
         <input
           type="text"
